@@ -31,8 +31,7 @@ function executeProcess(url){
 
 	alwaysDo();
 
-	if(LOCAL.getImperio() == null)
-		GLOBAL.showError("La extensión no genero los parametros iniciales, por favor navega a la pagina de tu <a href='/tuimperio.php'>Imperio</a>");
+
 
 	if(url.indexOf(_WS_ESCOGEROBJECTIVO) != -1)
 	{
@@ -112,6 +111,13 @@ function executeProcess(url){
 		informes_activos();
 		return;
 	}
+
+	
+
+	// if(LOCAL.getImperio() == null){
+	// 	GLOBAL.showError("La extensión no genero los parametros iniciales, por favor navega a la pagina de tu <a href='/tuimperio.php'>Imperio</a>");
+	// }
+
 };
 
 executeProcess(document.URL);

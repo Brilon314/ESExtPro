@@ -6,15 +6,20 @@ function escogerobjetivo()
 	// Auto ataque
 
 	var autoAtack = LOCAL.getautoA();
+	console.log(autoAtack);
 	if(autoAtack){
 			buscarciudades();
+			console.log("busca ciudades");
 			document.getElementById("form_tropas").submit();
+			console.log("le da atacar");
 		}
 	window.addEventListener("keydown", function (event) 
 	{ 
+		console.log("algo del evento keydown");
 		console.log(event)
 		if (event.key==' '){
 		  document.getElementById("form_tropas").submit();
+		  console.log("le da atacat");
 		}
 	});
 

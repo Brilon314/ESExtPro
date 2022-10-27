@@ -160,18 +160,16 @@ function movertropas()
     // Auto ataque
 
 	if (autoAtack) {
-			console.log(autoAtack);
-			//cargarFormacion("d",$("#formacionesGuardadas").click());
-			if (document.getElementById("potencial2").value == 18735) {
-				console.log("no entra");
-			location.replace("escogerobjetivo.php?idho=60");}
-			else{
+		if (document.getElementById("potencial2").value == 18735) {
+			location.replace("escogerobjetivo.php?idho=60");
+		}
+		else {
+			// carga la formación
 			document.querySelector("#cargard > button").click();
+			// Mueve las tropas
 			document.getElementById("boton_submit").click();
-			}
+		}
 	}
-
-
 
 }
 

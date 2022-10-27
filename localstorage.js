@@ -16,7 +16,7 @@ var LOCAL_CARGA       = "Carga";
 var LOCAL_CANJES      = "Canjes";
 var LOCAL_CLAN        = "Clan";
 var AUTOA = "autoA"
-var aa = "s";
+var aa = "ss";
 
 if (aa == "s") {
 	localStorage[AUTOA] = JSON.stringify(true);
