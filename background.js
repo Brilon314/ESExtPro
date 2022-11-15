@@ -1,10 +1,14 @@
-chrome.action.onClicked.addListener(
-	function(tab) {
-		if (tab.url && tab.url.indexOf('https://www.empire-strike.com/') === 0)
-			chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
-			console.log("anda");
-});
+// chrome.action.onClicked.addListener(
+// 	function(tab) {
+// 		if (tab.url && tab.url.indexOf('https://www.empire-strike.com/') === 0)
+// 			chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
+// 			console.log("anda");
+// });
 
+// ------------- Forzar fuente específica ------------- //
+
+$("body").css('font-family','"Times New Roman", Times, serif !important');
+$(".lista2 td").css('font-size: 1em');
 
 // ------------- EXPERIMENTAL ------------- //
 

@@ -22,7 +22,7 @@ function movertropas()
 	  	if($(obj.children[0]).text()=="Total por niveles"||$(obj.children[0]).text()=="Nombre")
 			return;
 		
-		creaBoton(obj,"guardarFormacion", function(){guardarFormacion(obj)});
+		creaBoton(obj,"Save", function(){guardarFormacion(obj)});
 	});
 
 	$("body").append(`<a id="submit_tropas" style="display: none;" onclick="submit_page();">pedir tabla de tropas</a>`);
