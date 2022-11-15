@@ -1,3 +1,13 @@
+// ------------- Muestra los puntos hechos en el día ------------- //
+var valrank = parseInt(document.querySelector("#datos > tbody > tr:nth-child(6) > td:nth-child(3)").innerHTML);
+var valactual = parseInt(document.querySelector("#mirank > span.valor").innerHTML);
+var puntosdia =valactual - valrank;
+
+$("#datos > tbody > tr:nth-child(6)").append(`<td><b>Puntos: </b><div align="right" style="font-size: x-large"> ${puntosdia}</div></td>`);
+
+// ------------- Fin ------------- //
+
+
 //GUARDAR NOMBRE IMPERIO e ID
 var info = $("#contenido .titulo").html().trim().toUpperCase();
 info = info.replace("TU IMPERIO: ", "");

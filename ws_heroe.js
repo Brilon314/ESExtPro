@@ -15,3 +15,13 @@
 
 // document.getElementById("datosheroe"
 // $(".lista1 tr").each(function(index, obj) {
+
+
+
+
+var expactual = parseInt(document.getElementById("datosheroe").querySelector("tbody td p").innerHTML);
+var expnextlvl = parseInt(document.getElementById("datosheroe").querySelector("div:nth-child(1) > table > tbody > tr > td:nth-child(3) > p:nth-child(1)").innerHTML);
+var diferencia = expnextlvl - expactual;
+console.log(expactual);
+console.log(expnextlvl);
+console.log(diferencia);

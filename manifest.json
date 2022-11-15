@@ -1,6 +1,6 @@
 {
   "name": "Empire Strike - AA Edition",
-  "version": "0.22.10.16",
+  "version": "0.22.11.15",
   "manifest_version": 3,
   "description": "Lo que el ES debería ser.",
   "icons": { "128": "base/icon.png" },
@@ -102,6 +102,10 @@
 	{
 		"matches": ["https://www.empire-strike.com/rutascomerciales.php"],
 		"js": ["content.js","ws_rutascomerciales.js"]
+	},
+	{
+		"matches": ["https://www.empire-strike.com/heroe.php?*"],
+		"js": ["content.js","ws_heroe.js"]
 	},
 	{
 		"matches": ["https://www.empire-strike.com/politica.php"],
