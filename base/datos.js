@@ -44,6 +44,42 @@ const MAXIMOS = {
 	"KARMA"         : 70/15*GLOBAL.getClanCantidad(),
 	"MANA"          : 15
 }
+const RENDJUEGO = {
+	"ALIMENTOS"		: "0%",
+	"AGUA"          : "0%",
+	"HIERRO"        : "63%",
+	"HERRAMIENTAS"  : "33%",
+	"ARMAS"         : "50%",
+	"PIEDRA"        : "33%",
+	"MADERA"        : "40%",
+	"BLOQUES"       : "40%",
+	"TABLAS"        : "40%",
+	"MITHRIL"       : "50%",
+	"PLATA"         : "33%",
+	"CRISTAL"       : "48%",
+	"RELIQUIAS"     : "50%",
+	"GEMAS"         : "50%",
+	"JOYAS"         : "48%"
+
+}
+const RENDIMIENTO = {
+	"ALIMENTOS"		: "0.0% ",
+	"AGUA"          : "0.0% ",
+	"HIERRO"        : "25%",
+	"HERRAMIENTAS"  : "40%",
+	"ARMAS"         : "40%",
+	"PIEDRA"        : "33%",
+	"MADERA"        : "20%",
+	"BLOQUES"       : "20%",
+	"TABLAS"        : "20%",
+	"MITHRIL"       : "40%",
+	"PLATA"         : "40%",
+	"CRISTAL"       : "48%",
+	"RELIQUIAS"     : "50%",
+	"GEMAS"         : "40%",
+	"JOYAS"         : "48%"
+
+}
 const CIERRE = {
 	"ALIMENTOS"		: 3,
 	"AGUA"          : 3,
