@@ -1,8 +1,8 @@
 {
-  "name": "Empire Strike - AA Edition",
-  "version": "0.22.11.15",
+  "name": "ESExtPRO - Versión Desktop",
+  "version": "0.18.09.23",
   "manifest_version": 3,
-  "description": "Lo que el ES debería ser.",
+  "description": "Sumando funcionalidades que deberían ser parte del juego.",
   "icons": { "128": "base/icon.png" },
   "background": {
    "service_worker": "background-wrapper.js" },
@@ -77,7 +77,7 @@
 			"localstorage.js",
 			"base/datos.js",
 			"content.js",
-			"ws_ciudad.js"/*,
+			"ws_ciudad.js",
 			"ciudad/dominio/class_edificio.js",
 			"ciudad/dominio/class_ciudad.js",
 			"ciudad/dominio/class_multiplicador.js",
@@ -85,11 +85,13 @@
 			"ciudad/aplicacion/class_estrellas.js",
 			"ciudad/infraestructura/class_elemento_edificios.js",
 			"ciudad/infraestructura/funciones.js",
-			"ciudad/ciudad.js"*/]
+			"ciudad/ciudad.js"]
 	},
 	{
 		"matches": ["https://www.empire-strike.com/tuimperio.php"],
-		"js": ["ws_imperio.js"]
+		"js": [
+			"base/jquery.min.js",
+			"ws_imperio.js"]
 	},
 	{
 		"matches": ["https://www.empire-strike.com/quest.php?*"],

@@ -1,6 +1,5 @@
 var rondas = [1,2,3,4,5,6,7,8,9,10];
 
-
 function data(){
 	$("#rra > h3:nth-child(8)").each(function(index, obj) {
 			rondas[index] = obj.innerText;;
@@ -8,16 +7,14 @@ function data(){
 
 	$(".combate_cronica").each(function(index, obj) {
 			var cronica = obj.innerText;
-			// console.log("Combate crónica: "+index);
 			console.log(cronica);});
 	$(".combate_ata span").each(function(index, obj) {
-			// console.log("Combate ataque: "+index);
 			var trop_ata = obj.innerText;
 			console.log(trop_ata);});
 	$(".combate_def span").each(function(index, obj) {
-			// console.log("Combate defensa: "+index);
 			var trop_def = obj.innerText;
 			console.log(trop_def);});
+	
 
 }
 data();

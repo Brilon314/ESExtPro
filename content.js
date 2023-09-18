@@ -33,11 +33,11 @@ function executeProcess(url){
 
 
 
-	if(url.indexOf(_WS_ESCOGEROBJECTIVO) != -1)
-	{
-		escogerobjetivo();
-		return;
-	}
+	// if(url.indexOf(_WS_ESCOGEROBJECTIVO) != -1)
+	// {
+	// 	escogerobjetivo();
+	// 	return;
+	// }
 
 	if(url.indexOf(_WS_RANKING) != -1)
 	{

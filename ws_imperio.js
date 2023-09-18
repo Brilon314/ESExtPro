@@ -1,5 +1,6 @@
 // ------------- Muestra los puntos hechos en el día ------------- //
-var valrank = parseInt(document.querySelector("#datos > tbody > tr:nth-child(6) > td:nth-child(3)").innerHTML);
+
+var valrank = parseInt(document.querySelector("#datos > tbody > tr:nth-child(4) > td:nth-child(3)").innerText);
 var valactual = parseInt(document.querySelector("#mirank > span.valor").innerHTML);
 var puntosdia =valactual - valrank;
 
@@ -30,7 +31,8 @@ if($($("#datos td")[5]).html().match(/\(...\)/g) != null && $($("#datos td")[5])
 var ciudades = new Array();
 var heroes = new Array();
 var produccion = {};
-var ib = $("#datos>tbody>tr:eq(4)")[0].outerText.replace('Índice Bélico','').split('%')[0].replace(',','.').trim();
+//#datos > tbody > tr:nth-child(3) > td:nth-child(3)
+var ib = $("#datos > tbody > tr:nth-child(3) > td:nth-child(3)")[0].outerText.replace('Índice Bélico','').split('%')[0].replace(',','.').trim();
 //Formula 0.1*(100 - IB actual)
 var ibReducidoAlPaso = 0.1*(100-ib);
 var ibAlPaso = (ib - ibReducidoAlPaso).toFixed(1);
@@ -166,7 +168,7 @@ if(LOCAL.getImperio() == null){
 	LOCAL.setHeroe(heroes);
 	LOCAL.setProduccion(produccion);
 	LOCAL.setImperio(imperio)
-	API.setRutasHeroku(id,GLOBAL.getPartida(),clan,GLOBAL.getRonda(),ciudades)
+	//API.setRutasHeroku(id,GLOBAL.getPartida(),clan,GLOBAL.getRonda(),ciudades)
 	//API.setImperio(id, nombre, raza, GLOBAL.getPartida(), GLOBAL.getRonda(), clan, ciudades, produccion, heroes, GLOBAL.getFechaFin());
 }
 	else

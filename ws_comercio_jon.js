@@ -19,17 +19,31 @@ function comercio()
 	{
 		oroRaza=40000;
 	}
+	
 	var valoresVenta = {};
 	$(".lista1 tr").each(function(index, obj) {
-		if(index == 0)
+		if(index == 0){
+			var nombre = $(obj.children[0]).text().trim().toUpperCase();
+			$(obj.children[5]).append("<span style='font-weight: bold; font-size: 0.9em'>COM </span>");
+			$(obj.children[5]).append("<span style='font-weight: bold; font-size: 0.9em'>(JUE)</span>");
+			console.log(nombre);
 			return;
+		}
 
-	  if(obj.children.length < 3)
+	  if(obj.children.length < 3){
 			return;
+	  }
+	  	
 
 		var nombre = $(obj.children[0]).text().trim().toUpperCase();
 		var venta = parseInt($(obj.children[3]).text().trim());
 		var compra = parseInt($(obj.children[2]).text().trim());
+
+// ------------- Agrega % rendimiento de comercio ------------- //
+		$(obj.children[5]).append("<span style='font-weight: bold; font-size: 0.9em'>    "+ RENDIMIENTO[nombre] +" </span>");
+
+// ------------- Agrega % rendimiento de juego ------------- //
+		$(obj.children[5]).append("<span style='font-weight: bold; font-size: 0.8em'>    ("+ RENDJUEGO[nombre] +") </span>");
 
 		valoresVenta[nombre] = venta;		
 		var difCompra = compra - MINIMOS[nombre];
@@ -88,8 +102,8 @@ function comercio()
 function compraJusta(oroRaza) 
 {
 	var turnosGastados     = parseInt(document.getElementById("turnos").value);
-	var	oroGanado          = parseInt(document.getElementById("cobrar").value.replaceAll(".",""));
-	var	oroGastado         = parseInt(document.getElementById("pagar").value.replaceAll(".",""));
+	var	oroGanado          = parseInt(document.getElementById("cobrar").value);
+	var	oroGastado         = parseInt(document.getElementById("pagar").value);
 	var OroTurno           = oroRaza * turnosGastados;
 	var OroSumaGastoGanado = oroGanado+oroGastado;
 	var difOro             = OroTurno-OroSumaGastoGanado;
@@ -104,8 +118,11 @@ function compraJusta(oroRaza)
 	  	if(obj.children.length < 3)
 			return;		
 		var nombre = $(obj.children[0]).text().trim().toUpperCase();
+		console.log("nombre" +nombre);
 		var venta = parseInt($(obj.children[3]).text().trim());
+		console.log("venta" +venta);
 		var compra = parseInt($(obj.children[2]).text().trim());
+		console.log("compra" +compra);
 		if(difOro!=0){
 			difOro            += -1;
 			difCompra          = Math.trunc(difOro/compra);			
