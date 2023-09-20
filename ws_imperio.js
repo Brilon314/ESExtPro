@@ -1,10 +1,13 @@
 // ------------- Muestra los puntos hechos en el día ------------- //
 
 var valrank = parseInt(document.querySelector("#datos > tbody > tr:nth-child(4) > td:nth-child(3)").innerText);
+console.log(valrank);
 var valactual = parseInt(document.querySelector("#mirank > span.valor").innerHTML);
+console.log(valactual);
 var puntosdia =valactual - valrank;
+console.log(puntosdia);
 
-$("#datos > tbody > tr:nth-child(6)").append(`<td><b>Puntos: </b><div align="right" style="font-size: x-large"> ${puntosdia}</div></td>`);
+$("#datos > tbody > tr:nth-child(4)").append(`<td><b>Puntos del día: </b><div align="right" style="font-size: x-large"> ${puntosdia}</div></td>`);
 
 // ------------- Fin ------------- //
 
