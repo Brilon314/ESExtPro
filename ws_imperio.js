@@ -23,6 +23,39 @@ if(valor > 0)
 	LOCAL.setValor(valor);
 //fin CARGA VALOR
 
+// OBTIENE DATOS PARA BOTON TODAS LAS CIUDADES
+
+// Guarda todos los enlaces a las ciudades en este array
+const cityLinks = [];
+
+// Encuentra la tabla que contiene la lista de ciudades.
+const table = document.querySelector("#contenido > table:nth-child(7)");
+
+if (table) {
+  // Obtiene todas las filas de la tabla
+  const rows = table.querySelectorAll("tr.impar, tr.par");
+
+  // Recorre cada fila
+  rows.forEach((row) => {
+    // Encuentra la celda que tiene el enlace a la ciudad
+    const cellWithLink = row.querySelector("td:nth-child(3)");
+
+    if (cellWithLink) {
+      // Obtiene el enlace real
+      const link = cellWithLink.querySelector("a");
+
+      if (link) {
+        // Añade el enlace al array
+        cityLinks.push(link.href);
+      }
+    }
+  });
+} else {
+  console.log("No se encontró la tabla.");
+}
+
+// FIN OBTIENE DATOS PARA BOTON TODAS LAS CIUDADES
+
 var raza = $($("#datos tr td")[2]).html();
 var clan = "";
 if($($("#datos td")[5]).html().match(/\(...\)/g) != null && $($("#datos td")[5]).html().match(/\(...\)/g).length == 1)
@@ -93,6 +126,7 @@ $(".lista2:not(:first) tr").each(function(index, obj){
 	$(obj.children[15 - sinRutas]).append("<br><span style='font-size:11px'><b style='color:#990000'>" + saleProteccion.formatDate() + "</b></span>");
 });
 
+
 produccion.fama = famaProduccion;
 
 // OBTENER HEROES
@@ -161,6 +195,51 @@ $("#cuadro_produccion .contenido table tr").each(function(index, obj){
 			return
 	}
 });
+
+// CREAR BOTON TODAS LAS CIUDADES
+
+// Crea un nuevo botón
+const openAllButton = document.createElement("button");
+
+// Añade la clase y el estilo
+openAllButton.className = "boton-papiro";
+openAllButton.style.height = "35px";
+
+// Crea un nuevo elemento de imagen
+const houseImg = document.createElement("img");
+houseImg.src = "https://images.empire-strike.com/archivos/icon_ciudad2.gif";
+houseImg.alt = "Casa";
+
+// Crea un elemento de texto
+const textNode = document.createTextNode("Abrir todas las ");
+
+// Añade el texto y la imagen al botón
+openAllButton.appendChild(textNode);
+openAllButton.appendChild(houseImg);
+
+// Añade un evento de clic al botón
+openAllButton.onclick = function() {
+  cityLinks.forEach((url) => {
+    window.open(url, '_blank'); // Abre cada ciudad en una nueva pestaña
+  });
+};
+
+// Encuentra la etiqueta <h3> donde quieres insertar el botón
+const h3Tag = document.querySelector("#contenido > br.clearfix");
+
+if (h3Tag) {
+  // Alinea el botón a la derecha del elemento <h3>
+openAllButton.style.margin = "auto";
+openAllButton.style.display = "block";
+
+  // Inserta el botón justo antes del elemento <h3>
+  h3Tag.parentNode.insertBefore(openAllButton, h3Tag);
+} else {
+  console.log("No se encontró la etiqueta <h3>.");
+}
+
+// FIN CREAR BOTON TODAS LAS CIUDADES
+
 
 if(LOCAL.getImperio() == null){
 	var imperio = imperio_generateImperio(id, nombre, raza, GLOBAL.getPartida(), GLOBAL.getRonda(), clan, ciudades, produccion, heroes, GLOBAL.getFechaFin(),pacifico);
@@ -233,6 +312,7 @@ if(LOCAL.getImperio() == null){
 		API.setImperio(id, nombre, raza, GLOBAL.getPartida(), GLOBAL.getRonda(), clan, ciudades, produccion, heroes, GLOBAL.getFechaFin());
 }
 GLOBAL.cargaImperio();
+
 
 
 function imperio_generateCiudad(idImperio, idCiudad, nombre, region, poblacion, edificios, oro, recursos, fama, moral, defensa, tropas, proteccion)
