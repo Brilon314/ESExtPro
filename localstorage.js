@@ -87,7 +87,7 @@ var LOCAL = {
 
 		localStorage[LOCAL_ASEDIOS] = JSON.stringify(newAsedios);
 
-		GLOBAL.generateAsedios();
+		// GLOBAL.generateAsedios();
 	},
 	getAsedio: function(idCiudad)
 	{

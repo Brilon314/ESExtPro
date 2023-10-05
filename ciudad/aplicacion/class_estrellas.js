@@ -1,8 +1,11 @@
 class estrellas {
 	puedoconstruir(edificio,estrella,recursosActuales){
-		let recurso       = edificio.getCosto()["recurso"]
-		let costoOro      = this.costoEstrella(edificio.getConstruido(),estrella)*edificio.getCosto()["oro"];
-		let costoRecurso  = this.costoEstrella(edificio.getConstruido(),estrella)*edificio.getCosto()["cantidadRecurso"];
+		var recurso       = edificio.getCosto()["recurso"]
+		console.log('recurso:', recurso);
+		var costoOro      = this.costoEstrella(edificio.getConstruido(),estrella)*edificio.getCosto()["oro"];
+		console.log('costoOro:', costoOro);
+		var costoRecurso  = this.costoEstrella(edificio.getConstruido(),estrella)*edificio.getCosto()["cantidadRecurso"];
+		console.log('costoRecurso:', costoRecurso);
 		if (costoOro>recursosActuales["ORO"]||costoRecurso>recursosActuales[recurso])
 			return false;
 		else{
@@ -10,8 +13,8 @@ class estrellas {
 		}
 	}
 	costoEstrella(construido,estrella){
-		let costo = 0;
-		for(let i = (construido+1); i <= estrella; i++)
+		var costo = 0;
+		for(var i = (construido+1); i <= estrella; i++)
 			costo += i;
 		return costo;
 	}

@@ -120,11 +120,11 @@ function generateInforme(selector, tipoInforme, haceDD, haceHH, haceMM)
 		var asedio = LOCAL.getAsedio(idCiudad);
 		var marcado = asedio != null && asedio.marcado;
 		
-		if(GLOBAL.generateAsedios())
-		{
-			$(positionMarcar).append("<b><a class='marcarAsedio_" + idCiudad + "' style='font-size: 13px; text-decoration: none; color: " + (marcado ? "#990000" : "#006400") + "'>" + (marcado ? "[Desmarcar]" : "[Marcar]") + "</a></b>");
-			$(positionMarcar).find("a").click(function(){ marcarAsedio(idCiudad); });
-		}
+		// if(GLOBAL.generateAsedios())
+		// {
+		// 	$(positionMarcar).append("<b><a class='marcarAsedio_" + idCiudad + "' style='font-size: 13px; text-decoration: none; color: " + (marcado ? "#990000" : "#006400") + "'>" + (marcado ? "[Desmarcar]" : "[Marcar]") + "</a></b>");
+		// 	$(positionMarcar).find("a").click(function(){ marcarAsedio(idCiudad); });
+		// }
 
 		var porcentaje = parseFloat($(positionPorcentaje).html().trim().replace(",",".").replace("%",""));
 		if(porcentaje > 2)

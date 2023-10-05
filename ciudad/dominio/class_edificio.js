@@ -1,9 +1,9 @@
 class edificioclass {
 	#bonoParaRutas;
-	#nombre;        
-	#construidos;    
+	#nombre;
+	#construidos;
 	#costosIniciales;
-	#produccion;     
+	#produccion;
 	#recusoProducido;
 	#seleccionados = 0;
 	constructor(nombre, construido, costosIniciales, produccionBase, multiplicador){
@@ -33,10 +33,10 @@ class edificioclass {
 			return this.#construidos;
 	}
 	getRentabilizacion(valorRecursos,numeroEstrella,gastoTurnos){
-		let costoRecurso = this.#costosIniciales["cantidadRecurso"]*valorRecursos[this.#costosIniciales["recurso"]]*numeroEstrella;
-		let costoOro     = this.#costosIniciales["oro"]*valorRecursos["ORO"]*numeroEstrella;
-		let costoTurnos  = gastoTurnos*valorRecursos["TURNOS"];
-		let produccion   = this.#produccion*valorRecursos[this.#recusoProducido];
+		var costoRecurso = this.#costosIniciales["cantidadRecurso"]*valorRecursos[this.#costosIniciales["recurso"]]*numeroEstrella;
+		var costoOro     = this.#costosIniciales["oro"]*valorRecursos["ORO"]*numeroEstrella;
+		var costoTurnos  = gastoTurnos*valorRecursos["TURNOS"];
+		var produccion   = this.#produccion*valorRecursos[this.#recusoProducido];
 		return (costoRecurso+costoOro)/(produccion+this.#bonoParaRutas);
 	}
 }

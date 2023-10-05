@@ -63,6 +63,7 @@
 			"ws_informes.js",
 			"ws_ultimosAtaques.js",
 			"ws_comercio.js",
+			"ws_conflictos.js",
 			"ws_ranking.js",
 			"ws_mensajes.js",
 			"ws_gobierno.js",

@@ -104,10 +104,10 @@ var GLOBAL = {
 				return 0;
 		}
 	},
-	generateAsedios : function()
+	/*generateAsedios : function()
 	{
 		return false;
-	},
+	},*/
 	getRonda: function() {
 		return parseInt($($("#_infopartida").contents().filter(function() { return this.nodeType == Node.TEXT_NODE; })[1]).text().trim().replace("(Ronda ","").replace(")","").split(" ")[1]);
 	},

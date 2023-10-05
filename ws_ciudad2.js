@@ -1,91 +1,110 @@
-var interfaz = document.createElement("table")
+var interfaz = document.createElement("table");
 interfaz.innerHTML = `<tbody><tr><td class="cabecera"><span>Construir Edificios</span></td></tr><tr><td class="contenido" align="absmiddle"><input id="autoBuild" type="number" class="text" size="6"><span width="20" class="sprite-recurso flechita"></span><button name="Submit" value="Construir Edificios" onclick="return submitForm_edificios();" style="margin-top: 2px;">
                     <nobr>Construir <img src="//images.empire-strike.com/archivos/icon_ciudad5.gif" border="0" alt="Construir edificios" align="absmiddle" width="14" height="14"></nobr>
-                </button></td></tr><tr><td class="pie"></td></tr></tbody>`
+                </button></td></tr><tr><td class="pie"></td></tr></tbody>`;
 interfaz.className = "minipapiro";
-document.getElementById("contenido").prepend(interfaz)
 var autoBuild = document.getElementById("autoBuild");
+autoBuild.style.position = 'fixed';
+autoBuild.style.bottom  = '0';
+autoBuild.style.left = '50%';
+autoBuild.style.transform  = 'translateX(-50%)'; // Esto es para centrarlo correctamente
+
+
+document.getElementById("contenido").prepend(interfaz);
+
+
 var ValorRecursos;
-var dataCiudad = new Array();
+var dataCiudad = [];
 var diaPartida = parseInt(document.getElementById("hora").innerText.split("DíA ")[1]);
 var modoCierre = false;
-if (diaPartida < 19) {
-    ValorRecursos = MINIMOS;
-    console.log("MINIMOS");
-} else if (diaPartida < 48) {
-    ValorRecursos = MAXIMOS;
-    console.log("MAXIMOS");
-} else {
-    ValorRecursos = CIERRE;
-    modoCierre = true;
-    console.log("modo CIERRE");
+if(diaPartida<19){
+	ValorRecursos = MINIMOS;
+	console.log("MINIMOS");
 }
-var produccionCiudad = {};
-var masRentable = 99990;
-var masRentableI = 99990;
-var flagRentable = false;
-var rBase = 30 * 2 * 1.44;
-var k_Pacifico = 1;
-var multiplicador = {
-    "ALIMENTOS": 1,
-    "AGUA": 1,
-    "HIERRO": 1,
-    "HERRAMIENTAS": 1,
-    "ARMAS": 1,
-    "PIEDRA": 1,
-    "MADERA": 1,
-    "BLOQUES": 1,
-    "TABLAS": 1,
-    "MITHRIL": 1,
-    "PLATA": 1,
-    "CRISTAL": 1,
-    "RELIQUIAS": 1,
-    "GEMAS": 1,
-    "JOYAS": 1,
-    "KARMA": 1,
-    "MANA": 1,
-    "ORO": 1,
-    "FAMA": 1
+else if(diaPartida<48){
+	ValorRecursos = MAXIMOS;
+	console.log("MAXIMOS");
+}
+else{
+	ValorRecursos = CIERRE;
+	modoCierre    = true;
+	console.log("modo CIERRE");
 }
 //tomo poblacion, quito espacios, punto de mil y parseo a entero
 var pobla = parseInt(document.getElementById("poblacionciudad").innerText.trim().replace(".", ""));
+
 //edifico con barra espaciadora
-window.addEventListener("keydown", function(event) {
-    if (event.key == ' ') {
-        document.getElementById("frm_edificios").submit();
-    }
+window.addEventListener("keydown", function (event) {
+	if (event.key==' '){
+		document.getElementById("frm_edificios").submit();
+	}
 });
+
 //coloco boton de construccion al centro
-document.getElementById('flotante').style.left = "35%";
-if (LOCAL.getPacifico()) k_Pacifico = 1.2;
-rBase *= k_Pacifico;
-multiplicador.FAMA *= k_Pacifico;
+document.getElementById('flotante').style.left="35%";
+
+if (LOCAL.getPacifico())
+k_Pacifico		   = 1.2;
+rBase             *= k_Pacifico;
+multiplicador.FAMA*= k_Pacifico;
 multiplicador.ORO *= k_Pacifico;
+multiplicador.ORO *= 1+parseInt(document.getElementById("impuestoactual").innerText.replace("%",""))/100;
+
+
+var produccionCiudad = {};
+var masRentable = 			99990;
+var masRentableI = 			99990;
+var flagRentable = 			false;
+var rBase = 				30 * 2 * 1.44;
+var k_Pacifico = 			1;
+var multiplicador = {
+    "ALIMENTOS": 			1,
+    "AGUA": 				1,
+    "HIERRO": 				1,
+    "HERRAMIENTAS": 		1,
+    "ARMAS": 				1,
+    "PIEDRA": 				1,
+    "MADERA": 				1,
+    "BLOQUES": 				1,
+    "TABLAS": 				1,
+    "MITHRIL": 				1,
+    "PLATA": 				1,
+    "CRISTAL": 				1,
+    "RELIQUIAS": 			1,
+    "GEMAS": 				1,
+    "JOYAS": 				1,
+    "KARMA": 				1,
+    "MANA": 				1,
+    "ORO": 					1,
+    "FAMA": 				1
+};
 multiplicador.ORO *= 1 + parseInt(document.getElementById("impuestoactual").innerText.replace("%", "")) / 100;
+
 if (LOCAL.getPoliticas() != null) {
     let politicas = LOCAL.getPoliticas();
-    multiplicador.KARMA = 1 + 0.05 * politicas.losdioses;
-    multiplicador.MANA = 1 + 0.05 * politicas.magiaarcana;
-    multiplicador.PIEDRA = 1 + 0.02 * (politicas.arquitectura + politicas.esclavitud);
-    multiplicador.BLOQUES = 1 + 0.02 * politicas.arquitectura;
-    multiplicador.MADERA = 1 + 0.01 * (politicas.esclavitud + 2 * politicas.naturaleza);
-    multiplicador.AGUA = 1 + 0.01 * politicas.lamujer;
-    multiplicador.TABLAS = 1 + 0.02 * politicas.naturaleza;
-    multiplicador.ALIMENTOS = 1 + 0.01 * politicas.lamujer;
-    multiplicador.PLATA = 1 + 0.02 * politicas.profundidadcuevas;
-    multiplicador.HIERRO = (1 + 0.02 * politicas.profundidadcuevas) * (1 + 0.02 * politicas.esclavitud);
-    multiplicador.MITHRIL = 1 + 0.01 * politicas.profundidadcuevas;
-    multiplicador.ORO *= (1 + (0.02 * politicas.burguesia)) * (1 - (0.02 * politicas.aduanas)) * (1 - (0.02 * politicas.nobleza));
-    rBase *= 1 + (0.06 * politicas.rutasdecontrabando);
+    multiplicador.KARMA 		= 1 + 0.05 * politicas.losdioses;
+    multiplicador.MANA 			= 1 + 0.05 * politicas.magiaarcana;
+    multiplicador.PIEDRA 		= 1 + 0.02 * (politicas.arquitectura + politicas.esclavitud);
+    multiplicador.BLOQUES 		= 1 + 0.02 * politicas.arquitectura;
+    multiplicador.MADERA 		= 1 + 0.01 * (politicas.esclavitud + 2 * politicas.naturaleza);
+    multiplicador.AGUA 			= 1 + 0.01 * politicas.lamujer;
+    multiplicador.TABLAS 		= 1 + 0.02 * politicas.naturaleza;
+    multiplicador.ALIMENTOS 	= 1 + 0.01 * politicas.lamujer;
+    multiplicador.PLATA 		= 1 + 0.02 * politicas.profundidadcuevas;
+    multiplicador.HIERRO 		= (1 + 0.02 * politicas.profundidadcuevas) * (1 + 0.02 * politicas.esclavitud);
+    multiplicador.MITHRIL 		= 1 + 0.01 * politicas.profundidadcuevas;
+    multiplicador.ORO 			*= (1 + (0.02 * politicas.burguesia)) * (1 - (0.02 * politicas.aduanas)) * (1 - (0.02 * politicas.nobleza));
+    rBase 						*= 1 + (0.06 * politicas.rutasdecontrabando);
 }
+
 if (LOCAL.getClan() != null) {
-    bonoMaravilla(LOCAL.getClan(), 1)
-    bonoMaravilla(LOCAL.getClan(), 2)
+    bonoMaravilla(LOCAL.getClan(), 1);
+    bonoMaravilla(LOCAL.getClan(), 2);
 }
 //CALCULO EFICIENCIA EN TERRENO
 var subtitulo = document.querySelector(".subtitulo").innerText;
 var inicioCadena = subtitulo.indexOf(":") + 2;
-var finCadeba = subtitulo.indexOf(";")
+var finCadeba = subtitulo.indexOf(";");
 var terreno = subtitulo.substring(inicioCadena, finCadeba);
 var region = parseInt(subtitulo.split("#")[1]);
 switch (terreno) {
@@ -109,11 +128,11 @@ switch (terreno) {
         multiplicador.PIEDRA *= 1.6;
         multiplicador.GEMAS *= 1.3;
         break;
-}
 //fin CALCULO EFICIENCIA EN TERRENO
-if (LOCAL.getGobernantes() != null)
-    if (LOCAL.getGobernantes()[region] == LOCAL.getImperio()["clan"]) {
-        switch (GLOBAL.getPartida()) {
+if (LOCAL.getGobernantes() != null){
+    if (LOCAL.getGobernantes()[region] == LOCAL.getImperio()['clan']) {
+        switch (GLOBAL.getPartida())
+        {
             case 'KENARON':
             case 'GARDIS':
                 switch (region) {
@@ -183,8 +202,8 @@ if (LOCAL.getGobernantes() != null)
                     case 27:
                         rBase *= 2;
                         break;
+               break;
                 }
-                break;
             case 'ZULA':
             case 'NUMIAN':
                 switch (region) {
@@ -198,6 +217,7 @@ if (LOCAL.getGobernantes() != null)
                         break;
                     case 6:
                         multiplicador.KARMA *= 2;
+                        break;
                         break;
                     case 7:
                         multiplicador.MADERA *= 3;
@@ -218,6 +238,7 @@ if (LOCAL.getGobernantes() != null)
                         multiplicador.FAMA *= 1.5;
                         break;
                 }
+                break;
             case 'FANTASY':
                 switch (region) {
                     case 11:
@@ -230,6 +251,7 @@ if (LOCAL.getGobernantes() != null)
                     case 13:
                         multiplicador.KARMA *= 1.2;
                         multiplicador.MANA *= 1.2;
+                        break;
                     case 6:
                         rBase *= 2;
                         break;
@@ -239,20 +261,21 @@ if (LOCAL.getGobernantes() != null)
                     case 15:
                         multiplicador.KARMA *= 2;
                         break;
-                }
-                break;
+               }
+               break;
         }
     }
-if (LOCAL.getImperio() != null)
-    if (LOCAL.getImperio()["raza"] == "Humanos") {
+}
+if (LOCAL.getImperio() != null){
+    if (LOCAL.getImperio()['raza'] == 'Humanos') {
         multiplicador.JOYAS = multiplicador.JOYAS * 2;
         multiplicador.RELIQUIAS = multiplicador.RELIQUIAS * 2;
-    }
-if (document.querySelector("#acciones_ciudad_wrapper > table:nth-child(2) > tbody > tr:nth-child(2) > td:nth-child(1) > div").children.length != 2)
+    }}
+if (document.querySelector("#acciones_ciudad_wrapper > table:nth-child(2) > tbody > tr:nth-child(2) > td:nth-child(1) > div").children.length != 2){
     /*if(document.querySelector("#acciones_ciudad_wrapper > table:nth-child(2) > tbody > tr:nth-child(2) > td:nth-child(1) > div").children[2].textContent.split(':')[0]=='Felicidad')
-        for(index in multiplicador){
-            multiplicador[index] *=1.2;
-        }*/
+    	for(index in multiplicador){
+    		multiplicador[index] *=1.2;
+    	}*/
     document.querySelectorAll("#tablaproduccion tr").forEach(function callback(obj, index) {
         switch (index) {
             case 0:
@@ -287,71 +310,38 @@ if (document.querySelector("#acciones_ciudad_wrapper > table:nth-child(2) > tbod
                 produccionCiudad.cristal = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
                 break;
             default:
-                return
+                return;
         }
     });
 chrome.storage.sync.get({
     construcciones: true
 }, function(items) {
     if (items.construcciones) ciudad_process();
-});
+})
 if (LOCAL.getCiudad() != null) {
-    var ciudades = LOCAL.getCiudad()
-    var idCiudad = parseInt(document.querySelector(".tituloimperio").innerText.split("#")[1]);
+    var ciudades = LOCAL.getCiudad();
+    var idCiudad = parseInt(document.querySelector('.tituloimperio'.innerText.split("#")[1]);
     for (var i = 0; i < ciudades.length; i++) {
         if (ciudades[i].idCiudad == idCiudad) {
             ciudades[i].cargada = true;
             LOCAL.setCiudad(ciudades);
         }
     }
-}
-var edificiosConstruidos = new Array();
-var costosTotales = new Array();
-var edificios = new Array();
+    )}
+
+var edificiosConstruidos = [];
+var costosTotales = [];
+var edificios = [];
 GLOBAL.cargaImperio();
-
-// CANTIDAD DE TROPAS QUE ACTUAN EN LA DEFENSA DE LA CIUDAD
-
-var cantTropasActivas = 0; // Esta variable llevará la cantTropasActivas de los porcentajes mayores o iguales a 5
-const tropas = document.querySelectorAll("span.porcentajetropas");
-tropas.forEach(function callback(obj, index) {
-    // Elimina el símbolo '%' y convierte el texto en un número
-    let porcentaje = parseFloat(obj.textContent.replace('%', ''));
-    // Compara si el porcentaje es mayor o igual a 5
-    if (porcentaje >= 5) {
-        cantTropasActivas++;
-    }
-});
-// Ahora, añade la nueva fila a la tabla
-const tbody = document.querySelector("#acciones_ciudad_wrapper > table:nth-child(6) > tbody > tr:nth-child(2) > td:nth-child(1) > div > table:nth-child(1) > tbody");
-const nuevaFila = document.createElement("tr");
-// Añade las celdas a la nueva fila
-const celdaImagen = document.createElement("td");
-celdaImagen.width = "44";
-nuevaFila.appendChild(celdaImagen);
-const celdaMensaje = document.createElement("td");
-celdaMensaje.colSpan = 2; // Hace que la celda ocupe dos columnas
-const textoMensaje = document.createElement("span");
-textoMensaje.textContent = "Tropas que actúan: ";
-textoMensaje.style.fontSize = "12px";
-textoMensaje.style.fontWeight = "700";
-const numeroMensaje = document.createElement("span");
-numeroMensaje.textContent = `${cantTropasActivas}`;
-numeroMensaje.style.fontSize = "18px";
-numeroMensaje.style.fontWeight = "700";
-celdaMensaje.appendChild(textoMensaje);
-celdaMensaje.appendChild(numeroMensaje);
-nuevaFila.appendChild(celdaMensaje);
-tbody.appendChild(nuevaFila);
 
 function ciudad_process() {
     if (document.querySelector(".c .nome").length == 0) return;
     UTIL.injectCode("base/setvalueedif.js");
     setTimeout(() => {
         //Time out para la lectura de los edificios
-        var costosIniciales = JSON.parse(document.getElementById("valoresEdificio").value);
-        var recursosActuales = JSON.parse(document.getElementById("recursosActuales").value);
-        var recursosUsados = JSON.parse(document.getElementById("recursosActuales").value);
+        var costosIniciales = JSON.parse(document.getElementById('valoresEdificio').value);
+        var recursosActuales = JSON.parse(document.getElementById('recursosActuales').value);
+        var recursosUsados = JSON.parse(document.getElementById('recursosActuales').value);
         edificiosConstruidos = new Array();
         ciudad_cleanUsados(recursosUsados);
         edificios = new Array();
@@ -565,8 +555,8 @@ function edificiosSeleccionados() {
 function mostrarCasitas(casitas) {
     if (document.getElementById("casitas") == null) {
         document.getElementById("panel").innerHTML += `<span id="casitas">&nbsp;<nobr><span class="sprite-recurso absmiddle">
-                                                       <img style="width: 15px;height: 13px" src="//images.empire-strike.com/v2/iconos/icon_ciudad.gif" >
-                                                       </span><span>${casitas}</span></nobr></span>`
+		                                               <img style="width: 15px;height: 13px" src="//images.empire-strike.com/v2/iconos/icon_ciudad.gif" >
+		                                               </span><span>${casitas}</span></nobr></span>`
     }
     if (casitas == 0) {
         document.getElementById("casitas").remove();

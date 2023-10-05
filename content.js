@@ -18,6 +18,7 @@ var _WS_MENSAJES = "/mensajes.php"
 var _WS_LOGIN = "/login.php"
 var _WS_MOVERTROPAS = "/movertropas.php"
 var _WS_GOBIERNO = "/gobierno.php"
+var _WS_CONFLICTOS = "/conflictos.php"
 
 function executeProcess(url){
 
@@ -42,6 +43,11 @@ function executeProcess(url){
 	if(url.indexOf(_WS_RANKING) != -1)
 	{
 		ranking();
+		return;
+	}
+	if(url.indexOf(_WS_CONFLICTOS) != -1)
+	{
+		conflictos();
 		return;
 	}
 
