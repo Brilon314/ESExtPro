@@ -10,7 +10,7 @@ class elementoEdificioClass{
 		});
 		elementoEdificio.forEach(function callback(elemento,idEdificio){
 			elemento.addEventListener("click",function(){
-				let seleccionados = parseInt(document.getElementById("xx_txt_costo_edificio_estrella_seleccionada_"+idEdificio).value) + 1;
+				var seleccionados = parseInt(document.getElementById("xx_txt_costo_edificio_estrella_seleccionada_"+idEdificio).value) + 1;
 				this.#edificio.setSeleccionado(seleccionados);
 				recursos.setVariacionRecursos(getRecursosUsados());
 				calculaEstrellas();

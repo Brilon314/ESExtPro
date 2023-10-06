@@ -1,129 +1,129 @@
 {
-  "name": "ESExtPRO - Versión Desktop",
-  "version": "0.18.09.23",
-  "manifest_version": 3,
-  "description": "Sumando funcionalidades que deberían ser parte del juego.",
-  "icons": { "128": "base/icon.png" },
-  "background": {
-   "service_worker": "background-wrapper.js" },
-  "options_ui" : {
-    "page": "options/options.html"
-  },"web_accessible_resources": [
-	{
-		"resources" : ["base/setvalueedif.js"],
-		"matches"   : ["<all_urls>"]
+	"name": "ESExtPRO - Versión Desktop",
+	"version": "0.18.09.23",
+	"manifest_version": 3,
+	"description": "Sumando funcionalidades que deberían ser parte del juego.",
+	"icons": { "128": "base/icon.png" },
+	"background": {
+		"service_worker": "background-wrapper.js"
 	},
-	{
-		"resources" : ["base/ayuda.js"],
-		"matches"   : ["<all_urls>"]
+	"options_ui": {
+		"page": "options/options.html"
 	},
-	{
-		"resources" : ["base/moveIcon.png"],
-		"matches"   : ["https://www.empire-strike.com/*"]
-	},
-	{
-		"resources" : ["base/list.png"],
-		"matches"   : ["https://www.empire-strike.com/*"]
-	},
-	{
-		"resources" : ["base/house.png"],
-		"matches"   : ["https://www.empire-strike.com/*"]
-	},
-	{
-		"resources" : ["base/hero.png"],
-		"matches"   : ["https://www.empire-strike.com/*"]
-	},
-	{
-		"resources" : ["base/puzzle.png"],
-		"matches"   : ["https://www.empire-strike.com/*"]
-	},
-	{
-		"resources" : ["base/estrella-verde.png","base/estrella-lila.png","base/estrella-blanca.png","base/estrella-azul.png"],
-		"matches"   : ["https://www.empire-strike.com/*"]
-	},
-	{
-		"resources" : ["base/button.mpeg"],
-		"matches"   : ["https://www.empire-strike.com/*"]
+	"web_accessible_resources": [
+		{
+			"resources": ["base/setvalueedif.js"],
+			"matches": ["<all_urls>"]
+		},
+		{
+			"resources": ["base/ayuda.js"],
+			"matches": ["<all_urls>"]
+		},
+		{
+			"resources": ["base/moveIcon.png"],
+			"matches": ["https://www.empire-strike.com/*"]
+		},
+		{
+			"resources": ["base/list.png"],
+			"matches": ["https://www.empire-strike.com/*"]
+		},
+		{
+			"resources": ["base/house.png"],
+			"matches": ["https://www.empire-strike.com/*"]
+		},
+		{
+			"resources": ["base/hero.png"],
+			"matches": ["https://www.empire-strike.com/*"]
+		},
+		{
+			"resources": ["base/puzzle.png"],
+			"matches": ["https://www.empire-strike.com/*"]
+		},
+		{
+			"resources": [
+				"base/estrella-verde.png",
+				"base/estrella-lila.png",
+				"base/estrella-blanca.png",
+				"base/estrella-azul.png"
+			],
+			"matches": ["https://www.empire-strike.com/*"]
+		},
+		{
+			"resources": ["base/button.mpeg"],
+			"matches": ["https://www.empire-strike.com/*"]
+		}
+	],
+	"content_scripts": [
+		{
+			"matches": ["https://www.empire-strike.com/*"],
+			"js": [
+				"base/jquery.min.js",
+				"base/util.js",
+				"localstorage.js",
+				"global.js",
+				"base/datos.js",
+				"api.js",
+				"ws_atacar.js",
+				"ws_escogerObjectivo.js",
+				"ws_clanes.js",
+				"ws_clan.js",
+				"ws_informes.js",
+				"ws_ultimosAtaques.js",
+				"ws_comercio.js",
+				"ws_conflictos.js",
+				"ws_ranking.js",
+				"ws_mensajes.js",
+				"ws_gobierno.js",
+				"ws_movertropas.js",
+				"content.js"
+			]
+		},
+		{
+			"matches": ["https://www.empire-strike.com/ciudad.php?*"],
+			"js": [
+				"global.js",
+				"localstorage.js",
+				"base/datos.js",
+				"content.js",
+				"ciudad/dominio/class_ciudad.js",
+				"ciudad/dominio/class_edificio.js",
+				"ciudad/dominio/class_multiplicador.js",
+				"ciudad/dominio/class_recursos.js",
+				"ciudad/infraestructura/class_elemento_edificios.js",
+				"ciudad/aplicacion/class_estrellas.js",
+				"ciudad/infraestructura/funciones.js",
+				"ws_ciudad.js",
+				"ciudad/ciudad.js"
+			]
+		},
+		{
+			"matches": ["https://www.empire-strike.com/tuimperio.php"],
+			"js": ["base/jquery.min.js", "ws_imperio.js"]
+		},
+		{
+			"matches": ["https://www.empire-strike.com/quest.php?*"],
+			"js": ["ws_quest.js"]
+		},
+		{
+			"matches": ["https://www.empire-strike.com/canjearfama.php?*"],
+			"js": ["ws_canjearfama.js"]
+		},
+		{
+			"matches": ["https://www.empire-strike.com/rutascomerciales.php"],
+			"js": ["content.js", "ws_rutascomerciales.js"]
+		},
+		{
+			"matches": ["https://www.empire-strike.com/heroe.php?*"],
+			"js": ["content.js", "ws_heroe.js"]
+		},
+		{
+			"matches": ["https://www.empire-strike.com/politica.php"],
+			"js": ["content.js", "ws_politica.js"]
+		}
+	],
+	"permissions": ["activeTab", "scripting", "tabs", "notifications", "storage"],
+	"action": {
+		"default_name": "Empire Strike",
+		"default_icon": "base/marker.png"
 	}
-],
-  "content_scripts": [
-    {
-		"matches": ["https://www.empire-strike.com/*"],
-		"js": [
-			"base/jquery.min.js",
-			"base/util.js",
-			"localstorage.js",
-			"global.js",
-			"base/datos.js",
-			"api.js",
-			"ws_atacar.js",
-			"ws_escogerObjectivo.js",
-			"ws_clanes.js",
-      "ws_clan.js",
-			"ws_informes.js",
-			"ws_ultimosAtaques.js",
-			"ws_comercio.js",
-			"ws_conflictos.js",
-			"ws_ranking.js",
-			"ws_mensajes.js",
-			"ws_gobierno.js",
-			"ws_movertropas.js",
-			"content.js"
-		]
-	},
-	{
-		"matches": ["https://www.empire-strike.com/ciudad.php?*"],
-		"js": [
-			"global.js",
-			"localstorage.js",
-			"base/datos.js",
-			"content.js",
-			"ws_ciudad.js",
-			"ciudad/dominio/class_edificio.js",
-			"ciudad/dominio/class_ciudad.js",
-			"ciudad/dominio/class_multiplicador.js",
-			"ciudad/dominio/class_recursos.js",
-			"ciudad/aplicacion/class_estrellas.js",
-			"ciudad/infraestructura/class_elemento_edificios.js",
-			"ciudad/infraestructura/funciones.js",
-			"ciudad/ciudad.js"]
-	},
-	{
-		"matches": ["https://www.empire-strike.com/tuimperio.php"],
-		"js": [
-			"base/jquery.min.js",
-			"ws_imperio.js"]
-	},
-	{
-		"matches": ["https://www.empire-strike.com/quest.php?*"],
-		"js": ["ws_quest.js"]
-	},
-	{
-		"matches": ["https://www.empire-strike.com/canjearfama.php?*"],
-		"js": ["ws_canjearfama.js"]
-	},
-	{
-		"matches": ["https://www.empire-strike.com/rutascomerciales.php"],
-		"js": ["content.js","ws_rutascomerciales.js"]
-	},
-	{
-		"matches": ["https://www.empire-strike.com/heroe.php?*"],
-		"js": ["content.js","ws_heroe.js"]
-	},
-	{
-		"matches": ["https://www.empire-strike.com/politica.php"],
-		"js": ["content.js","ws_politica.js"]
-	}
-  ],
-  "permissions": [
-    "activeTab",
-		"scripting",
-    "tabs",
-    "notifications",
-    "storage"
-  ],
-  "action": {
-      "default_name": "Empire Strike",
-      "default_icon": "base/marker.png"
-  }
 }

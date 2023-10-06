@@ -9,8 +9,10 @@ class edificioclass {
 	constructor(nombre, construido, costosIniciales, produccionBase, multiplicador){
 		this.#bonoParaRutas      = multiplicador.RUTAS*60*1.44;
 		this.#nombre             = nombre;
+		// console.log('this.#nombre:', this.#nombre);
 		this.#construidos        = construido;
 		this.#costosIniciales    = costosIniciales[nombre];
+		// console.log('this.#costosIniciales:', this.#costosIniciales);
 		this.#produccion         = (produccionBase[nombre][0]*multiplicador[produccionBase[nombre][1]]);
 		this.#recusoProducido    = produccionBase[nombre][1];
 	}

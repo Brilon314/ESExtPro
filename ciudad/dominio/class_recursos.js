@@ -12,14 +12,14 @@ class recursosClass {
 				this.#variacionRecursos[key] =recursos[key];
 	}
 	getCeroRecursos(){
-		let ceroRecursos = {};
+		var ceroRecursos = {};
 		for(var key in this.#recursosActuales){
 			ceroRecursos[key] = 0;
 		}
 		return ceroRecursos;
 	}
 	getRecursos(){
-		let recursosDisponibles = {};
+		var recursosDisponibles = {};
 		for(var key in this.#recursosActuales){
 			recursosDisponibles[key] = this.#recursosActuales[key] + this.#variacionRecursos[key];
 		}
