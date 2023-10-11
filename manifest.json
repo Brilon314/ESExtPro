@@ -1,11 +1,11 @@
 {
-	"name": "ESExtPRO - Versión Desktop",
+	"name": "ESExtPRO - Versión Rebuild",
 	"version": "0.18.09.23",
 	"manifest_version": 3,
 	"description": "Sumando funcionalidades que deberían ser parte del juego.",
 	"icons": { "128": "base/icon.png" },
 	"background": {
-		"service_worker": "background-wrapper.js"
+		"service_worker": "background.js"
 	},
 	"options_ui": {
 		"page": "options/options.html"
@@ -81,20 +81,19 @@
 		{
 			"matches": ["https://www.empire-strike.com/ciudad.php?*"],
 			"js": [
-				"global.js",
-				"localstorage.js",
-				"base/datos.js",
-				"content.js",
-				"ciudad/dominio/class_ciudad.js",
-				"ciudad/dominio/class_edificio.js",
-				"ciudad/dominio/class_multiplicador.js",
-				"ciudad/dominio/class_recursos.js",
-				"ciudad/infraestructura/class_elemento_edificios.js",
-				"ciudad/aplicacion/class_estrellas.js",
-				"ciudad/infraestructura/funciones.js",
-				/*"ws_ciudad.js",*/
-				"ciudad/ciudad.js"
-			]
+			"global.js",
+			"localstorage.js",
+			"base/datos.js",
+			"content.js",
+			//"ws_ciudad.js"/*,
+			"ciudad/dominio/class_edificio.js",
+			"ciudad/dominio/class_ciudad.js",
+			"ciudad/dominio/class_multiplicador.js",
+			"ciudad/dominio/class_recursos.js",
+			"ciudad/aplicacion/class_estrellas.js",
+			"ciudad/infraestructura/class_elemento_edificios.js",
+			"ciudad/infraestructura/funciones.js",
+			"ciudad/ciudad.js"/**/]
 		},
 		{
 			"matches": ["https://www.empire-strike.com/tuimperio.php"],
@@ -114,7 +113,7 @@
 		},
 		{
 			"matches": ["https://www.empire-strike.com/heroe.php?*"],
-			"js": ["content.js", "ws_heroe.js"]
+			"js": ["ws_heroe.js"]
 		},
 		{
 			"matches": ["https://www.empire-strike.com/politica.php"],

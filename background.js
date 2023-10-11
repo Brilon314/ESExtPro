@@ -1,9 +1,10 @@
-// chrome.action.onClicked.addListener(
-// 	function(tab) {
-// 		if (tab.url && tab.url.indexOf('https://www.empire-strike.com/') === 0)
-// 			chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
-// 			console.log("anda");
-// });
+chrome.action.onClicked.addListener(
+	function(tab) {
+		if (tab.url && tab.url.indexOf('https://www.empire-strike.com/') === 0)
+			chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
+});
+
+
 
 // ------------- Forzar fuente específica ------------- //
 

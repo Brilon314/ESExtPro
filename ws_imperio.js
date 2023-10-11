@@ -32,11 +32,35 @@ if(valor > 0)
 const cityLinks = [];
 
 // Encuentra la tabla que contiene la lista de ciudades.
-const table = document.querySelector("#contenido > table:nth-child(7)");
+const table = document.querySelector("#contenido > table:nth-child(8) > tbody");
 
 if (table) {
   // Obtiene todas las filas de la tabla
   const rows = table.querySelectorAll("tr.impar, tr.par");
+
+  // Recorre cada fila
+  rows.forEach((row) => {
+    // Encuentra la celda que tiene el enlace a la ciudad
+    const cellWithLink = row.querySelector("td:nth-child(3)");
+
+    if (cellWithLink) {
+      // Obtiene el enlace real
+      const link = cellWithLink.querySelector("a");
+
+      if (link) {
+        // Añade el enlace al array
+        cityLinks.push(link.href);
+      }
+    }
+  });
+} else {
+  console.log("No se encontró la tabla.");
+}
+const table2 = document.querySelector("#contenido > table:nth-child(7)");
+
+if (table2) {
+  // Obtiene todas las filas de la tabla
+  const rows = table2.querySelectorAll("tr.impar, tr.par");
 
   // Recorre cada fila
   rows.forEach((row) => {

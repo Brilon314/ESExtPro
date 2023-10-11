@@ -15,7 +15,8 @@ var LOCAL_EFICIENCIA  = "Eficiencia";
 var LOCAL_CARGA       = "Carga";
 var LOCAL_CANJES      = "Canjes";
 var LOCAL_CLAN        = "Clan";
-var AUTOA = "autoA"
+
+/*var AUTOA = "autoA";
 var aa = "ss";
 
 if (aa == "s") {
@@ -24,7 +25,7 @@ if (aa == "s") {
 else{
 	localStorage[AUTOA] = JSON.stringify(false);
 }
-
+*/
 var LOCAL = {
 	clean: function()
 	{
@@ -36,10 +37,10 @@ var LOCAL = {
 			localStorage.removeItem(key);
 		}
 	},
-	getautoA:function(){
+/*	getautoA:function(){
 
 		return JSON.parse(localStorage[AUTOA]);
-	},
+	},*/
 	setValor: function(valor)
 	{
 		localStorage[LOCAL_VALOR] = valor;
@@ -87,7 +88,7 @@ var LOCAL = {
 
 		localStorage[LOCAL_ASEDIOS] = JSON.stringify(newAsedios);
 
-		// GLOBAL.generateAsedios();
+		GLOBAL.generateAsedios();
 	},
 	getAsedio: function(idCiudad)
 	{

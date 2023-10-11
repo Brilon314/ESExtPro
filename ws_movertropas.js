@@ -1,5 +1,5 @@
 function movertropas(func) {
-  var autoAtack = LOCAL.getautoA();
+  // var autoAtack = LOCAL.getautoA();
   var formaciones = [];
   if (LOCAL.getFormaciones() != null) formaciones = LOCAL.getFormaciones();
   window.addEventListener("keydown", function (event) {

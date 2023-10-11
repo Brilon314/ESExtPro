@@ -1,4 +1,4 @@
-var rondas = [1,2,3,4,5,6,7,8,9,10];
+/*var rondas = [1,2,3,4,5,6,7,8,9,10];
 
 
 function data(){
@@ -20,10 +20,10 @@ function data(){
 			console.log(trop_def);});
 
 }
-data();
+data();*/
 function atacar()
 {
-	var autoAtack = LOCAL.getautoA();
+	// var autoAtack = LOCAL.getautoA();
 	if(LOCAL.getImperio() == null)
 		return;
 

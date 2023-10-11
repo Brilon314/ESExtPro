@@ -12,12 +12,10 @@ var modoCierre = false;
 if (diaPartida < 19) {
   ValorRecursos = MINIMOS;
   console.log("MINIMOS");
-}
-else if (diaPartida < 48) {
+} else if (diaPartida < 48) {
   ValorRecursos = MAXIMOS;
   console.log("MAXIMOS");
-}
-else {
+} else {
   ValorRecursos = CIERRE;
   modoCierre = true;
   console.log("modo CIERRE");
@@ -91,158 +89,158 @@ var finCadeba = subtitulo.indexOf(";");
 var terreno = subtitulo.substring(inicioCadena, finCadeba);
 var region = parseInt(subtitulo.split("#")[1]);
 switch (terreno) {
-case "Llanura":
-  multiplicador.ALIMENTOS *= 1.8;
-  break;
-case "Bosque":
-  multiplicador.MADERA *= 2;
-  break;
-case "Montaña":
-  multiplicador.HIERRO *= 1.4;
-  multiplicador.MITHRIL *= 1.3;
-  break;
-case "Río":
-  multiplicador.AGUA *= 2.4;
-  break;
-case "Costa":
-  multiplicador.ALIMENTOS *= 1.6;
-  break;
-case "Colina":
-  multiplicador.PIEDRA *= 1.6;
-  multiplicador.GEMAS *= 1.3;
-  break;
+  case "Llanura":
+    multiplicador.ALIMENTOS *= 1.8;
+    break;
+  case "Bosque":
+    multiplicador.MADERA *= 2;
+    break;
+  case "Montaña":
+    multiplicador.HIERRO *= 1.4;
+    multiplicador.MITHRIL *= 1.3;
+    break;
+  case "Río":
+    multiplicador.AGUA *= 2.4;
+    break;
+  case "Costa":
+    multiplicador.ALIMENTOS *= 1.6;
+    break;
+  case "Colina":
+    multiplicador.PIEDRA *= 1.6;
+    multiplicador.GEMAS *= 1.3;
+    break;
 }
 //fin CALCULO EFICIENCIA EN TERRENO
 if (LOCAL.getGobernantes() != null)
   if (LOCAL.getGobernantes()[region] == LOCAL.getImperio()["clan"]) {
     switch (GLOBAL.getPartida()) {
-    case "KENARON":
-    case "GARDIS":
-      switch (region) {
-      case 1:
-        multiplicador.ALIMENTOS *= 3;
+      case "KENARON":
+      case "GARDIS":
+        switch (region) {
+          case 1:
+            multiplicador.ALIMENTOS *= 3;
+            break;
+          case 2:
+            multiplicador.MANA *= 2;
+            break;
+          case 4:
+            multiplicador.MADERA *= 2;
+            multiplicador.TABLAS *= 2;
+            break;
+          case 5:
+            multiplicador.ORO *= 2;
+            break;
+          case 6:
+            multiplicador.FAMA *= 1.5;
+            break;
+          case 10:
+            multiplicador.HERRAMIENTAS *= 2;
+            multiplicador.HIERRO *= 2;
+            break;
+          case 11:
+            multiplicador.MADERA *= 2;
+            multiplicador.AGUA *= 2;
+            break;
+          case 12:
+            multiplicador.MADERA *= 3;
+            break;
+          case 14:
+            multiplicador.ARMAS *= 2;
+            multiplicador.HIERRO *= 2;
+            break;
+          case 15:
+            multiplicador.MITHRIL *= 2;
+            multiplicador.RELIQUIAS *= 2;
+            break;
+          case 17:
+            multiplicador.PIEDRA *= 3;
+            break;
+          case 20:
+            multiplicador.AGUA *= 3;
+            break;
+          case 23:
+            multiplicador.GEMAS *= 3;
+            break;
+          case 26:
+            multiplicador.PLATA *= 2;
+            multiplicador.JOYAS *= 2;
+            break;
+          case 28:
+            multiplicador.KARMA *= 1.5;
+            break;
+          case 29:
+            multiplicador.PIEDRA *= 2;
+            multiplicador.BLOQUES *= 2;
+            break;
+          case 30:
+            multiplicador.PLATA *= 1.5;
+            multiplicador.GEMAS *= 1.5;
+            multiplicador.JOYAS *= 1.5;
+            multiplicador.CRISTAL *= 1.5;
+            break;
+          case 9:
+          case 13:
+          case 27:
+            rBase *= 2;
+            break;
+        }
         break;
-      case 2:
-        multiplicador.MANA *= 2;
+      case "ZULA":
+      case "NUMIAN":
+        switch (region) {
+          case 1:
+            multiplicador.ARMAS *= 2;
+            multiplicador.HERRAMIENTAS *= 2;
+            break;
+          case 5:
+            multiplicador.PIEDRA *= 2.5;
+            multiplicador.BLOQUES *= 2.5;
+            break;
+          case 6:
+            multiplicador.KARMA *= 2;
+            break;
+          case 7:
+            multiplicador.MADERA *= 3;
+            multiplicador.TABLAS *= 3;
+            break;
+          case 9:
+            rBase = rBase * 3;
+            break;
+          case 11:
+            multiplicador.ALIMENTOS *= 2;
+            multiplicador.AGUA *= 2;
+            break;
+          case 11:
+            multiplicador.ALIMENTOS *= 1.5;
+            multiplicador.AGUA *= 1.5;
+            break;
+          case 16:
+            multiplicador.FAMA *= 1.5;
+            break;
+        }
+      case "FANTASY":
+        switch (region) {
+          case 11:
+            multiplicador.FAMA *= 1.5 / 0.9;
+            break;
+          case 12:
+            multiplicador.ORO *= 1.5;
+            multiplicador.MADERA *= 2;
+            break;
+          case 13:
+            multiplicador.KARMA *= 1.2;
+            multiplicador.MANA *= 1.2;
+          case 6:
+            rBase *= 2;
+            break;
+          case 7:
+            multiplicador.MANA *= 2;
+            break;
+          case 15:
+            multiplicador.KARMA *= 2;
+            break;
+        }
         break;
-      case 4:
-        multiplicador.MADERA *= 2;
-        multiplicador.TABLAS *= 2;
-        break;
-      case 5:
-        multiplicador.ORO *= 2;
-        break;
-      case 6:
-        multiplicador.FAMA *= 1.5;
-        break;
-      case 10:
-        multiplicador.HERRAMIENTAS *= 2;
-        multiplicador.HIERRO *= 2;
-        break;
-      case 11:
-        multiplicador.MADERA *= 2;
-        multiplicador.AGUA *= 2;
-        break;
-      case 12:
-        multiplicador.MADERA *= 3;
-        break;
-      case 14:
-        multiplicador.ARMAS *= 2;
-        multiplicador.HIERRO *= 2;
-        break;
-      case 15:
-        multiplicador.MITHRIL *= 2;
-        multiplicador.RELIQUIAS *= 2;
-        break;
-      case 17:
-        multiplicador.PIEDRA *= 3;
-        break;
-      case 20:
-        multiplicador.AGUA *= 3;
-        break;
-      case 23:
-        multiplicador.GEMAS *= 3;
-        break;
-      case 26:
-        multiplicador.PLATA *= 2;
-        multiplicador.JOYAS *= 2;
-        break;
-      case 28:
-        multiplicador.KARMA *= 1.5;
-        break;
-      case 29:
-        multiplicador.PIEDRA *= 2;
-        multiplicador.BLOQUES *= 2;
-        break;
-      case 30:
-        multiplicador.PLATA *= 1.5;
-        multiplicador.GEMAS *= 1.5;
-        multiplicador.JOYAS *= 1.5;
-        multiplicador.CRISTAL *= 1.5;
-        break;
-      case 9:
-      case 13:
-      case 27:
-        rBase *= 2;
-        break;
-      }
-      break;
-    case "ZULA":
-    case "NUMIAN":
-      switch (region) {
-      case 1:
-        multiplicador.ARMAS *= 2;
-        multiplicador.HERRAMIENTAS *= 2;
-        break;
-      case 5:
-        multiplicador.PIEDRA *= 2.5;
-        multiplicador.BLOQUES *= 2.5;
-        break;
-      case 6:
-        multiplicador.KARMA *= 2;
-        break;
-      case 7:
-        multiplicador.MADERA *= 3;
-        multiplicador.TABLAS *= 3;
-        break;
-      case 9:
-        rBase = rBase * 3;
-        break;
-      case 11:
-        multiplicador.ALIMENTOS *= 2;
-        multiplicador.AGUA *= 2;
-        break;
-      case 11:
-        multiplicador.ALIMENTOS *= 1.5;
-        multiplicador.AGUA *= 1.5;
-        break;
-      case 16:
-        multiplicador.FAMA *= 1.5;
-        break;
-      }
-    case "FANTASY":
-      switch (region) {
-      case 11:
-        multiplicador.FAMA *= 1.5 / 0.9;
-        break;
-      case 12:
-        multiplicador.ORO *= 1.5;
-        multiplicador.MADERA *= 2;
-        break;
-      case 13:
-        multiplicador.KARMA *= 1.2;
-        multiplicador.MANA *= 1.2;
-      case 6:
-        rBase *= 2;
-        break;
-      case 7:
-        multiplicador.MANA *= 2;
-        break;
-      case 15:
-        multiplicador.KARMA *= 2;
-        break;
-      }
-      break;
     }
   }
 if (LOCAL.getImperio() != null)
@@ -257,42 +255,43 @@ if (document.querySelector("#acciones_ciudad_wrapper > table:nth-child(2) > tbod
       }*/
   document.querySelectorAll("#tablaproduccion tr").forEach(function callback(obj, index) {
     switch (index) {
-    case 0:
-      produccionCiudad.turnos = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
-      produccionCiudad.hierro = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
-      produccionCiudad.herramientas = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
-      produccionCiudad.armas = parseInt(obj.children[7].innerText.replace(/\./g, "").trim());
-      break;
-    case 1:
-      produccionCiudad.mana = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
-      produccionCiudad.piedra = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
-      produccionCiudad.bloques = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
-      break;
-    case 2:
-      produccionCiudad.karma = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
-      produccionCiudad.madera = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
-      produccionCiudad.tablas = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
-      break;
-    case 3:
-      produccionCiudad.oro = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
-      produccionCiudad.mithril = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
-      produccionCiudad.reliquias = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
-      break;
-    case 4:
-      produccionCiudad.alimentos = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
-      produccionCiudad.plata = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
-      produccionCiudad.joyas = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
-      break;
-    case 5:
-      produccionCiudad.agua = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
-      produccionCiudad.gemas = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
-      produccionCiudad.cristal = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
-      break;
-    default:
-      return;
+      case 0:
+        produccionCiudad.turnos = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
+        produccionCiudad.hierro = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
+        produccionCiudad.herramientas = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
+        produccionCiudad.armas = parseInt(obj.children[7].innerText.replace(/\./g, "").trim());
+        break;
+      case 1:
+        produccionCiudad.mana = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
+        produccionCiudad.piedra = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
+        produccionCiudad.bloques = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
+        break;
+      case 2:
+        produccionCiudad.karma = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
+        produccionCiudad.madera = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
+        produccionCiudad.tablas = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
+        break;
+      case 3:
+        produccionCiudad.oro = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
+        produccionCiudad.mithril = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
+        produccionCiudad.reliquias = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
+        break;
+      case 4:
+        produccionCiudad.alimentos = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
+        produccionCiudad.plata = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
+        produccionCiudad.joyas = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
+        break;
+      case 5:
+        produccionCiudad.agua = parseInt(obj.children[1].innerText.replace(/\./g, "").trim());
+        produccionCiudad.gemas = parseInt(obj.children[3].innerText.replace(/\./g, "").trim());
+        produccionCiudad.cristal = parseInt(obj.children[5].innerText.replace(/\./g, "").trim());
+        break;
+      default:
+        return;
     }
   });
-chrome.storage.sync.get({
+chrome.storage.sync.get(
+  {
     construcciones: true,
   },
   function (items) {
@@ -313,9 +312,7 @@ var edificiosConstruidos = new Array();
 var costosTotales = new Array();
 var edificios = new Array();
 GLOBAL.cargaImperio();
-
 // CANTIDAD DE TROPAS QUE ACTUAN EN LA DEFENSA DE LA CIUDAD
-
 var cantTropasActivas = 0; // Esta variable llevará la cantTropasActivas de los porcentajes mayores o iguales a 5
 const tropas = document.querySelectorAll("span.porcentajetropas");
 tropas.forEach(function callback(obj, index) {
@@ -468,12 +465,10 @@ function ciudad_estrellas(costosTotales, recursosActuales, recursosUsados, edifi
           if (autoBuild.value > edificiosSeleccionados()) {
             console.log("se ha construido " + edificios[edificio]);
             obj.click();
-          }
-          else obj.src = chrome.runtime.getURL("base/estrella-azul.png");
+          } else obj.src = chrome.runtime.getURL("base/estrella-azul.png");
         }
       }
-    }
-    else {
+    } else {
       obj.src = "https://images.empire-strike.com/v2/interfaz/estrella-vacia.png";
       if (renta <= masRentableI && renta < masRentable) {
         masRentableI = renta;
@@ -491,39 +486,39 @@ function ciudad_calcular(inicio, estrella) {
 
 function edifRequerido(edificio, nroEdificio) {
   switch (edificio) {
-  case 20:
-  case 21:
-    if (nroEdificio <= estaConstruido(13)) return true;
-    else estrellaLila(nroEdificio, 21, 13);
-    return false;
-    break;
-  case 22:
-    if (nroEdificio <= estaConstruido(15)) return true;
-    else estrellaLila(nroEdificio, 22, 15);
-    return false;
-    break;
-  case 23:
-    if (nroEdificio <= estaConstruido(12)) return true;
-    else estrellaLila(nroEdificio, 23, 12);
-    return false;
-    break;
-  case 24:
-    if (nroEdificio <= estaConstruido(18)) return true;
-    else estrellaLila(nroEdificio, 24, 18);
-    return false;
-    break;
-  case 25:
-    if (nroEdificio <= estaConstruido(14)) return true;
-    else estrellaLila(nroEdificio, 25, 14);
-    return false;
-    break;
-  case 26:
-    if (nroEdificio <= estaConstruido(16)) return true;
-    else estrellaLila(nroEdificio, 26, 16);
-    return false;
-    break;
-  default:
-    return true;
+    case 20:
+    case 21:
+      if (nroEdificio <= estaConstruido(13)) return true;
+      else estrellaLila(nroEdificio, 21, 13);
+      return false;
+      break;
+    case 22:
+      if (nroEdificio <= estaConstruido(15)) return true;
+      else estrellaLila(nroEdificio, 22, 15);
+      return false;
+      break;
+    case 23:
+      if (nroEdificio <= estaConstruido(12)) return true;
+      else estrellaLila(nroEdificio, 23, 12);
+      return false;
+      break;
+    case 24:
+      if (nroEdificio <= estaConstruido(18)) return true;
+      else estrellaLila(nroEdificio, 24, 18);
+      return false;
+      break;
+    case 25:
+      if (nroEdificio <= estaConstruido(14)) return true;
+      else estrellaLila(nroEdificio, 25, 14);
+      return false;
+      break;
+    case 26:
+      if (nroEdificio <= estaConstruido(16)) return true;
+      else estrellaLila(nroEdificio, 26, 16);
+      return false;
+      break;
+    default:
+      return true;
   }
 }
 
@@ -537,8 +532,7 @@ function produccionEdificio(nombre) {
     var recursoProducido = PRODUCCION_BASE[nombre][1];
     produccionEdif = PRODUCCION_BASE[nombre][0];
     produccionEdif = produccionEdif * ValorRecursos[recursoProducido] * multiplicador[recursoProducido] * getKpobla(pobla) + rBase;
-  }
-  else {
+  } else {
     produccionEdif = rBase;
   }
   return produccionEdif;
@@ -609,8 +603,7 @@ function estrellaLila(estrella, id1, id2) {
       if (autoBuild.value > edificiosSeleccionados()) {
         console.log("se ha construido " + edificios[id2]);
         document.getElementById("edificio_estrella_" + id2 + estrella).click();
-      }
-      else document.getElementById("edificio_estrella_" + id2 + estrella).src = chrome.runtime.getURL("base/estrella-azul.png");
+      } else document.getElementById("edificio_estrella_" + id2 + estrella).src = chrome.runtime.getURL("base/estrella-azul.png");
     }
   }
 }
@@ -618,34 +611,34 @@ function estrellaLila(estrella, id1, id2) {
 function bonoMaravilla(maravillas, lugar) {
   if (maravillas["maravilla" + lugar] == null) return;
   switch (maravillas["maravilla" + lugar]) {
-  case "Escalera del destino":
-    multiplicador.BLOQUES *= 1 + 0.08 / lugar;
-    multiplicador.MADERA *= 1 + 0.08 / lugar;
-    multiplicador.AGUA *= 1 + 0.08 / lugar;
-    multiplicador.TABLAS *= 1 + 0.08 / lugar;
-    multiplicador.ALIMENTOS *= 1 + 0.08 / lugar;
-    multiplicador.PLATA *= 1 + 0.08 / lugar;
-    multiplicador.HIERRO *= 1 + 0.08 / lugar;
-    multiplicador.MITHRIL *= 1 + 0.08 / lugar;
-    multiplicador.HERRAMIENTAS *= 1 + 0.08 / lugar;
-    multiplicador.PIEDRA *= 1 + 0.08 / lugar;
-    multiplicador.ARMAS *= 1 + 0.08 / lugar;
-    multiplicador.JOYAS *= 1 + 0.08 / lugar;
-    multiplicador.CRISTAL *= 1 + 0.08 / lugar;
-    multiplicador.GEMAS *= 1 + 0.08 / lugar;
-    multiplicador.RELIQUIAS *= 1 + 0.08 / lugar;
-    console.log("mara escalera en " + lugar + "° lugar");
-    break;
-  case "Gran Puerto Mercantil":
-    rBase *= 1.25 / lugar;
-    console.log("mara de rutas en " + lugar + "° lugar");
-    break;
-  case "Estatua coloso":
-    multiplicador.FAMA *= 1.25 / lugar;
-    console.log("mara de fama en " + lugar + "° lugar");
-    break;
-  default:
-    console.log("la mara en " + lugar + "° lugar no es de produccion");
+    case "Escalera del destino":
+      multiplicador.BLOQUES *= 1 + 0.08 / lugar;
+      multiplicador.MADERA *= 1 + 0.08 / lugar;
+      multiplicador.AGUA *= 1 + 0.08 / lugar;
+      multiplicador.TABLAS *= 1 + 0.08 / lugar;
+      multiplicador.ALIMENTOS *= 1 + 0.08 / lugar;
+      multiplicador.PLATA *= 1 + 0.08 / lugar;
+      multiplicador.HIERRO *= 1 + 0.08 / lugar;
+      multiplicador.MITHRIL *= 1 + 0.08 / lugar;
+      multiplicador.HERRAMIENTAS *= 1 + 0.08 / lugar;
+      multiplicador.PIEDRA *= 1 + 0.08 / lugar;
+      multiplicador.ARMAS *= 1 + 0.08 / lugar;
+      multiplicador.JOYAS *= 1 + 0.08 / lugar;
+      multiplicador.CRISTAL *= 1 + 0.08 / lugar;
+      multiplicador.GEMAS *= 1 + 0.08 / lugar;
+      multiplicador.RELIQUIAS *= 1 + 0.08 / lugar;
+      console.log("mara escalera en " + lugar + "° lugar");
+      break;
+    case "Gran Puerto Mercantil":
+      rBase *= 1.25 / lugar;
+      console.log("mara de rutas en " + lugar + "° lugar");
+      break;
+    case "Estatua coloso":
+      multiplicador.FAMA *= 1.25 / lugar;
+      console.log("mara de fama en " + lugar + "° lugar");
+      break;
+    default:
+      console.log("la mara en " + lugar + "° lugar no es de produccion");
   }
   return;
 }
@@ -657,18 +650,14 @@ function cierreEdif(nroEstrella, nombre) {
   }
   return false;
 }
-
 // Selecciona el elemento <div> a mover
 const divElement = document.querySelector('div[style="clear:both;margin:5px 0 20px 0"]');
-
 // Selecciona el elemento que después se inserta el <div>
 const targetElement = document.querySelector("#contenido > h3");
-
 // Mueve el elemento <div> arriba
 if (divElement && targetElement) {
   targetElement.insertAdjacentElement("afterend", divElement);
 }
-
 // Crear un nuevo <div> con un <span> dentro
 const nuevoDiv = document.createElement("div");
 nuevoDiv.style.height = "25px";
@@ -677,22 +666,17 @@ contenidoSpan.textContent = "                 ";
 contenidoSpan.style.fontSize = "12px";
 contenidoSpan.style.fontWeight = "350";
 nuevoDiv.appendChild(contenidoSpan);
-
 const elementoObjetivo = document.querySelector('div[style="clear:both;margin:5px 0 20px 0"]');
-
 // Añadir el nuevo <div> después del elemento
 if (elementoObjetivo) {
   elementoObjetivo.insertAdjacentElement("afterend", nuevoDiv);
 }
-
 // Selecciona el elemento <div> que contiene los enlaces
 const elementoDivEstilo = document.querySelector('div[style="clear:both;margin:5px 0 20px 0"]');
-
 // Si el elemento <div> existe
 if (elementoDivEstilo) {
   // Selecciona todos los enlaces <a> dentro del <div>
   const enlaces = elementoDivEstilo.querySelectorAll("a.boton_bloque");
-
   // Aplica los estilos deseados a cada enlace
   enlaces.forEach((enlace) => {
     enlace.style.fontWeight = "bold"; // Hace el texto en negrita
