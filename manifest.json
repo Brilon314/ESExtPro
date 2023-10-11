@@ -1,8 +1,8 @@
 {
-	"name": "ESExtPRO - Versión Rebuild",
-	"version": "0.18.09.23",
+	"name": "ESExtPRO - Versión Desktop",
+	"version": "0.11.10.23",
 	"manifest_version": 3,
-	"description": "Sumando funcionalidades que deberían ser parte del juego.",
+	"description": "Continuando un largo legado.",
 	"icons": { "128": "base/icon.png" },
 	"background": {
 		"service_worker": "background.js"
