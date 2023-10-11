@@ -83,14 +83,26 @@ while(15 <= idReducido){
 		count++;
 }
 var pacifico= false;
-if(ib<=15&&LOCAL.getValor()>500){	
+/*if(ib<=15&&LOCAL.getValor()>500){
 	var iconoP=`<span id="icono_pacifico"> <img src="//images.empire-strike.com/archivos/icon_paz.gif" width="15" height="15" align="absmiddle" hspace="2" title="Eres un imperio Pacífico"></span>`;
 	$("#datos>tbody>tr:eq(4)").append(`<td><b>IB al paso:</b> ${ibAlPaso}%${iconoP}</td>`);
 	pacifico=true;
 }
-else
+else{
 	$("#datos>tbody>tr:eq(4)").append(`<td><b>IB al paso:</b> ${ibAlPaso}%, necesitas ${count} paso(s) para volver a pacifico</td>`);
 LOCAL.setPacifico(pacifico);
+}*/
+
+
+if(ib<=15&&LOCAL.getValor()>500){
+	var iconoP=`<span id="icono_pacifico"> <img src="//images.empire-strike.com/archivos/icon_paz.gif" width="15" height="15" align="absmiddle" hspace="2" title="Eres un imperio Pacífico"></span>`;
+	$("#datos > tbody > tr:nth-child(3)").append(`<td><b>IB al paso:</b> ${ibAlPaso}%${iconoP}</td>`);
+	pacifico=true;
+}
+else{
+	$("#datos > tbody > tr:nth-child(3)").append(`<td><b>IB al paso:</b> ${ibAlPaso}%, necesitas ${count} paso(s) para volver a pacifico</td>`);
+LOCAL.setPacifico(pacifico);
+}
 // OBTENER CIUDADES
 var famaProduccion = 0;
 $(".lista2:not(:first) tr").each(function(index, obj){

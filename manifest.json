@@ -92,7 +92,7 @@
 				"ciudad/infraestructura/class_elemento_edificios.js",
 				"ciudad/aplicacion/class_estrellas.js",
 				"ciudad/infraestructura/funciones.js",
-				"ws_ciudad.js",
+				/*"ws_ciudad.js",*/
 				"ciudad/ciudad.js"
 			]
 		},
