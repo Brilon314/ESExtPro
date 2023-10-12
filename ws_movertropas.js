@@ -163,8 +163,6 @@ var nombreCiudad = 0;
 var nombreBuscado = 0;
 var sistemaDefensivo = 0;
 var sistemaDefensivo2 = 0;
-var urlImagenSistemaDefensivo = 0;
-var urlImagenSistemaDefensivo2 = 0;
 
 function contarTropas2() {
   /// SISTEMAS DEEFENSIVOS
@@ -177,19 +175,32 @@ function contarTropas2() {
   var citys = JSON.parse(localStorage.getItem("Ciudades"));
 
   // Seleccionar el elemento que contiene el texto.
-  var element = document.querySelector('a[onclick="mover_todo_origen()"]');
-  var element2 = document.querySelector('a[onclick="mover_todo_destino()"]');
+  if (document.querySelector('a[onclick="mover_todo_origen()"]') != null && document.querySelector('a[onclick="mover_todo_destino()"]') != null) {
+    var element = document.querySelector('a[onclick="mover_todo_origen()"]');
+    var element2 = document.querySelector('a[onclick="mover_todo_destino()"]');
 
+    // Expresión regular para extraer el nombre de la ciudad.
+    var match = element.textContent.match(/Mover todo a (.+?)\s*$/);
+    var match2 = element2.textContent.match(/Mover todo a (.+?)\s*$/);
+
+    // El nombre de la ciudad estará en matchX[1] si la expresión regular encuentra una coincidencia.
+    var nomCiudad = match ? match[1] : null;
+    var nomCiudad2 = match2 ? match2[1] : null;
+
+    sistemaDefensivo = obtenerSistemaDefensivoPorNombre(nomCiudad);
+    sistemaDefensivo2 = obtenerSistemaDefensivoPorNombre(nomCiudad2);
+  }
+  /*
   // Expresión regular para extraer el nombre de la ciudad.
-  var match = element.textContent.match(/Mover todo a (.+?)\s*$/);
-  var match2 = element2.textContent.match(/Mover todo a (.+?)\s*$/);
+    var match = element.textContent.match(/Mover todo a (.+?)\s*$/);
+    var match2 = element2.textContent.match(/Mover todo a (.+?)\s*$/);
 
   // El nombre de la ciudad estará en matchX[1] si la expresión regular encuentra una coincidencia.
   var nomCiudad = match ? match[1] : null;
   var nomCiudad2 = match2 ? match2[1] : null;
 
   sistemaDefensivo = obtenerSistemaDefensivoPorNombre(nomCiudad);
-  sistemaDefensivo2 = obtenerSistemaDefensivoPorNombre(nomCiudad2);
+  sistemaDefensivo2 = obtenerSistemaDefensivoPorNombre(nomCiudad2);*/
 
   /// FIN SISTEMAS DEFENSIVOS
 
