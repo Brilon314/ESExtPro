@@ -176,26 +176,20 @@ function contarTropas2() {
 
   var citys = JSON.parse(localStorage.getItem("Ciudades"));
 
-  // 1. Selecciona el elemento que contiene el texto.
+  // Seleccionar el elemento que contiene el texto.
   var element = document.querySelector('a[onclick="mover_todo_origen()"]');
   var element2 = document.querySelector('a[onclick="mover_todo_destino()"]');
 
-  // 2. Usa una expresión regular para extraer el nombre de la ciudad.
+  // Expresión regular para extraer el nombre de la ciudad.
   var match = element.textContent.match(/Mover todo a (.+?)\s*$/);
   var match2 = element2.textContent.match(/Mover todo a (.+?)\s*$/);
 
-  // 3. El nombre de la ciudad estará en match[1] si la expresión regular encuentra una coincidencia.
+  // El nombre de la ciudad estará en matchX[1] si la expresión regular encuentra una coincidencia.
   var nomCiudad = match ? match[1] : null;
   var nomCiudad2 = match2 ? match2[1] : null;
 
   sistemaDefensivo = obtenerSistemaDefensivoPorNombre(nomCiudad);
-  console.log(nomCiudad); // Esto imprimirá el nombre de la ciudad.
-  console.log("sistemaDefensivo:", sistemaDefensivo);
   sistemaDefensivo2 = obtenerSistemaDefensivoPorNombre(nomCiudad2);
-  console.log(nomCiudad2); // Esto imprimirá el nombre de la ciudad.
-  console.log("sistemaDefensivo2:", sistemaDefensivo2);
-  urlImagenSistemaDefensivo = SISTEMAS_DEFENSIVOS[sistemaDefensivo];
-  urlImagenSistemaDefensivo2 = SISTEMAS_DEFENSIVOS[sistemaDefensivo2];
 
   /// FIN SISTEMAS DEFENSIVOS
 
@@ -225,23 +219,17 @@ function contarTropas2() {
 
   if (cargaroElement.children().first().is("button")) {
     cargaroElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countOrigen + spaces + `</strong></span>`);
-    cargaroElement.prepend(`<img src="//images.empire-strike.com/archivos/sistemas_defensivos/40/` + sistemaDefensivo +`.jpg" width="25" height="25" alt="">`);
+    cargaroElement.prepend(`<img src="//images.empire-strike.com/archivos/sistemas_defensivos/40/` + sistemaDefensivo + `.jpg" width="25" height="25" alt="">`);
     cargardElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countDestino + spaces + `</strong></span>`);
-    cargardElement.prepend(`<img src="//images.empire-strike.com/archivos/sistemas_defensivos/40/` + sistemaDefensivo2 +`.jpg" width="25" height="25" alt="">`);
-  }
-  /*if (contador < 1) {
-    cargaroElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countOrigen + spaces + `</strong></span>`);
-    cargardElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countDestino + spaces + `</strong></span>`);
-    contador = contador + 1;
-  } */else {
+    cargardElement.prepend(`<img src="//images.empire-strike.com/archivos/sistemas_defensivos/40/` + sistemaDefensivo2 + `.jpg" width="25" height="25" alt="">`);
+  } else {
     if (!cargaroElement.children().first().is("button")) {
       var spanElement = cargaroElement.find("span");
       if (spanElement.length) {
         spanElement.html(`<strong>` + spaces + countOrigen + spaces + `</strong>`);
       } else {
         cargaroElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countOrigen + spaces + `   </strong></span>`);
-    cargaroElement.prepend(`<img src="//images.empire-strike.com/archivos/sistemas_defensivos/40/` + sistemaDefensivo +`.jpg" width="25" height="25" alt="">`);
-
+        cargaroElement.prepend(`<img src="//images.empire-strike.com/archivos/sistemas_defensivos/40/` + sistemaDefensivo + `.jpg" width="25" height="25" alt="">`);
       }
     }
 
@@ -251,70 +239,11 @@ function contarTropas2() {
         spanElement2.html(`<strong>` + spaces + countDestino + spaces + `</strong>`);
       } else {
         cargardElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countDestino + spaces + `</strong></span>`);
-    cargardElement.prepend(`<img src="//images.empire-strike.com/archivos/sistemas_defensivos/40/` + sistemaDefensivo2 +`.jpg" width="25" height="25" alt="">`);
-
+        cargardElement.prepend(`<img src="//images.empire-strike.com/archivos/sistemas_defensivos/40/` + sistemaDefensivo2 + `.jpg" width="25" height="25" alt="">`);
       }
     }
   }
 }
-/*function contarTropas2() {
-  function verificarPorcentaje(elemento) {
-    var valor = parseInt(elemento.innerText.replace("%", ""), 10);
-    return valor >= 5;
-  }
-
-  function obtenerNombreCiudad(texto) {
-    // Reemplaza el patrón # seguido de números y un espacio con un string vacío
-    return texto.replace(/#\d+\s/, "");
-  }
-
-  // // Definimos los niveles de tropa
-  const nivelesTropas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-  countOrigen = 0;
-  countDestino = 0;
-
-  // Obtener todos los elementos
-  const elementosPorcentaje = document.querySelectorAll("#movera > form > table.lista1.tabla_mt > tbody .porcentajetropas");
-  for (var elemento of elementosPorcentaje) {
-    if (elemento.id.startsWith("poro") && nivelesTropas.includes(parseInt(elemento.id.replace("poro", ""), 10)) && verificarPorcentaje(elemento)) {
-      countOrigen++;
-    } else if (elemento.id.startsWith("pord") && nivelesTropas.includes(parseInt(elemento.id.replace("pord", ""), 10)) && verificarPorcentaje(elemento)) {
-      countDestino++;
-    }
-  }
-  const cargaroElement = $("#cargaro");
-  const cargardElement = $("#cargard");
-
-  var spaces = " ".repeat(3);
-
-  if (cargaroElement.children().first().is("button")) {
-    cargaroElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countOrigen + spaces + `</strong></span>`);
-    cargardElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countDestino + spaces + `</strong></span>`);
-  }
-  if (contador < 1) {
-    cargaroElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countOrigen + spaces + `</strong></span>`);
-    cargardElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countDestino + spaces + `</strong></span>`);
-    contador = contador + 1;
-  } else {
-    if (!cargaroElement.children().first().is("button")) {
-      var spanElement = cargaroElement.find("span");
-      if (spanElement.length) {
-        spanElement.html(`<strong>` + spaces + countOrigen + spaces + `</strong>`);
-      } else {
-        cargaroElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countOrigen + spaces + `   </strong></span>`);
-      }
-    }
-
-    if (!cargardElement.children().first().is("button")) {
-      var spanElement = cargardElement.find("span");
-      if (spanElement.length) {
-        spanElement.html(`<strong>` + spaces + countDestino + spaces + `</strong>`);
-      } else {
-        cargardElement.prepend(`<span style="font-size: 2em; color: red;"><strong>` + spaces + countDestino + spaces + `</strong></span>`);
-      }
-    }
-  }
-}*/
 
 function actualizad(m) {
   var input = document.getElementById("tropao" + m),
@@ -360,44 +289,11 @@ function creaBoton(obj, nombre, accion) {
 }
 
 function funcionClic(event) {
-  //movertropas(actualizar); // Nota que no usamos los paréntesis aquí.
+  //movertropas(actualizar);
   if (document.getElementById("calcula") != null) {
     contarTropas2();
     document.getElementById("calcula").click();
   }
-}
-
-function sisDef() {
-  function obtenerSistemaDefensivoPorNombre(nombreCiudad) {
-    var ciudad = citys.find((ciudad) => ciudad.nombre === nombreCiudad);
-    return ciudad ? ciudad.defensa : null;
-  }
-
-  var citys = JSON.parse(localStorage.getItem("Ciudades"));
-
-  // 1. Selecciona el elemento que contiene el texto.
-  var elemento = document.querySelector('a[onclick="mover_todo_origen()"]');
-  var elemento2 = document.querySelector('a[onclick="mover_todo_destino()"]');
-
-  // 2. Usa una expresión regular para extraer el nombre de la ciudad.
-  var match = elemento.textContent.match(/Mover todo a (.+?)\s*$/);
-  var match2 = elemento2.textContent.match(/Mover todo a (.+?)\s*$/);
-
-  // 3. El nombre de la ciudad estará en match[1] si la expresión regular encuentra una coincidencia.
-  var nomCiudad = match ? match[1] : null;
-  var nomCiudad2 = match2 ? match2[1] : null;
-
-  sistemaDefensivo = obtenerSistemaDefensivoPorNombre(nomCiudad);
-  // console.log(nomCiudad); // Esto imprimirá el nombre de la ciudad.
-  // console.log('sistemaDefensivo:', sistemaDefensivo);
-  sistemaDefensivo2 = obtenerSistemaDefensivoPorNombre(nomCiudad2);
-  // console.log(nomCiudad2); // Esto imprimirá el nombre de la ciudad.
-  // console.log('sistemaDefensivo2:', sistemaDefensivo2);
-  urlImagenSistemaDefensivo = SISTEMAS_DEFENSIVOS[sistemaDefensivo];
-  urlImagenSistemaDefensivo2 = SISTEMAS_DEFENSIVOS[sistemaDefensivo2];
-
-  // console.log(urlImagenSistemaDefensivo);  // Muestra: https://images.empire-strike.com/archivos/sistemas_defensivos/40/Lucha-Exterior.jpg
-  // console.log(urlImagenSistemaDefensivo2); // Muestra: https://images.empire-strike.com/archivos/sistemas_defensivos/40/Normal.jpg
 }
 
 // Auto ataque
