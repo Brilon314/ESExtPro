@@ -198,3 +198,14 @@ const BONO_GOBIERNO = {
 	          ]
 
 }
+
+const SISTEMAS_DEFENSIVOS = {
+	"Lucha-Exterior": 	"https://images.empire-strike.com/archivos/sistemas_defensivos/40/Lucha-Exterior.jpg",
+	"Normal": 					"https://images.empire-strike.com/archivos/sistemas_defensivos/40/Normal.jpg",
+	"Ultra-Defensivo": 	"https://images.empire-strike.com/archivos/sistemas_defensivos/40/Ultra-Defensivo.jpg",
+	"Contraofensiva": 	"https://images.empire-strike.com/archivos/sistemas_defensivos/40/Contraofensiva.jpg",
+	"Emboscada": 				"https://images.empire-strike.com/archivos/sistemas_defensivos/40/Emboscada.jpg"
+}
+
+
+

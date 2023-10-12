@@ -1,7 +1,7 @@
 //Cargar Multiplicado de gobernante de region
 var multiplicadorBase = 1;
 document.querySelector("tfoot tr").children[0].innerHTML = "<span id='multiplicadores' style='color: #001199; font-weight: bold'></span>"
-var multiplicadorGobernante = 2; 
+var multiplicadorGobernante = 2;
 if (GLOBAL.getPartida()=='ZULA'||GLOBAL.getPartida()=='NUMIAN')
     multiplicadorGobernante = 3;
 if(LOCAL.getPacifico()){
@@ -15,7 +15,7 @@ if(LOCAL.getClan()!=null){
 }
 
 
-//Almacenar Ciudades con bono de region segun Mapa  
+//Almacenar Ciudades con bono de region segun Mapa
 var ciudadConBonoRegion = [];
 if (LOCAL.getGobernantes()!=null)
   ciudadConBonoRegion = getCiudadesBonoRegion();
@@ -31,7 +31,7 @@ else                               //Agrega mensaje para cargar politicas si no 
 var rutas = new Array();
 //Recorre tabla ciudades fila por fila.
 document.querySelectorAll(".lista1 tr").forEach(function callback(obj , index){
-  
+
   if(index == 0)                   //Fila de titulos, agrega nombre de partida y salta de fila.
   {
     obj.children[1].innerHTML+="<span style='color: #990000'>("+GLOBAL.getPartida().substring(0,3)+")</span>";
@@ -50,14 +50,14 @@ document.querySelectorAll(".lista1 tr").forEach(function callback(obj , index){
   var nombre = obj.children[1].innerText;
   obj.children[1].innerHTML+="<span style='color: #990000; font-weight: bold'>("+oroIdeal({"poblacion": poblacion,"edificios": edificios})+")</span>";
   //Si la ciudad tiene bono de region, imprime
-  
+
   let multiplicadorRutas = multiplicadorBase;
   for (i in ciudadConBonoRegion) {
     if(ciudadConBonoRegion[i]==obj.children[0].innerText)
       multiplicadorRutas *= multiplicadorGobernante;
     }
   obj.children[1].innerHTML+="<span id=multiplicadorCiudad"+obj.children[0].innerText+" style='color: #001199; font-weight: bold'>x"+multiplicadorRutas.toFixed(1)+"</span>";
-  
+
 
   if(LOCAL.getImperio()==null)
     return;
@@ -80,7 +80,7 @@ function esRegionRutas(region){
   switch (GLOBAL.getPartida()){
     case 'KENARON':
     case 'GARDIS':
-      if(region==9||region==13||region==27){  
+      if(region==9||region==13||region==27){
         return true;
       }
       break;
@@ -178,7 +178,7 @@ function rutasComerciales_generateTablaCiudades(idCiudad, index , idRuta)
     tabla += "style='color:#990000; font-weight: bolder'> +<b";
   multiplicadorEnesimo=parseFloat(document.getElementById("multiplicadorCiudad"+idCiudad).innerText.replace("x",""));
   tabla += ">"+ diferenciaOro + "</span><span class='sprite-recurso oro absmiddle'></span><span style='color: #001199; font-weight: bold'>("+parseInt(diferenciaOro*multiplicadorEnesimo)+")</span></td>";
-  
+
   tabla += "</tr>";
   tabla += "<tr style='height: 20px'>";
   tabla += "<td colspan='3' style='color:#990000'><b>Click para asignar la ciudad como ruta</b></td>";
@@ -189,14 +189,14 @@ function rutasComerciales_generateTablaCiudades(idCiudad, index , idRuta)
 }
 
 function calculaRuta(ciudad,listaCiudades){
-  
+
   var rutasCiudad = new Array;
   for (var i = 0; i < listaCiudades.length; i++) {
     let rutaCiudad  = listaCiudades[i];
     if(rutaCiudad.idCiudad==ciudad.idCiudad){
       continue
     }
-    
+
     let multiplicadorCiudad    = multiplicadorPolitica;
     let pobla = menor(rutaCiudad.poblacion,ciudad.poblacion)
     let edificios = menor(rutaCiudad.edificios,ciudad.edificios)
@@ -236,7 +236,7 @@ function menor(a,b){
 
 function oroIdeal(ciudad){
   return parseInt((3000+ciudad.poblacion/10+ciudad.edificios*30)*1.44*multiplicadorPolitica);
-} 
+}
 
 function maraRutas(maravilla,lugar){
   if(maravilla==null)
