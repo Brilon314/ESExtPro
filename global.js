@@ -4,7 +4,7 @@ var _REGIONES = 2;
 var _RECONQUISTA = 3;
 var _INFORME = 1;
 var _INFORMECOMPARTIDO = 2;
-var politics = {
+/*var politics = {
 	losdioses: 0,
 	magiaarcana: 0,
 	rituales: 0,
@@ -27,7 +27,7 @@ var politics = {
 	medicina: 0,
 	escuelas: 0,
 	musica: 0,
-};
+};*/
 
 function alwaysDo() {
 	// Comprueba si la página actual es una de las que deseas monitorear
@@ -86,6 +86,7 @@ function alwaysDo() {
 	elementoLista.innerHTML = `<li><a href="ultimosataques.php">Ataques recibidos</a></li>`;
 	document.querySelector("#sinfo  ul").children[2].innerHTML = `<a href="ultimosataquestuyos.php">Ataques realizados</a>`;
 	document.querySelector("#sinfo  ul").children[2].before(elementoLista);
+	cargaImperio();
 }
 
 var GLOBAL = {
@@ -401,21 +402,9 @@ var GLOBAL = {
 				location.replace("tuimperio.php");
 				return;
 			}
-			if (LOCAL.getPoliticas() == null) {
+			if(LOCAL.getPoliticas()==null){
 				location.replace("politica.php");
 				return;
-			} else {
-				const obj1 = LOCAL.getPoliticas();
-				const obj2 = politics;
-
-				const isEqual = JSON.stringify(obj1) === JSON.stringify(obj2);
-				console.log(isEqual); // true si son iguales, false si no
-				console.log("LOCAL.getPoliticas():", LOCAL.getPoliticas());
-				console.log("politics:", politics);
-				if (isEqual) {
-					location.replace("politica.php");
-					return;
-				}
 			}
 			if (LOCAL.getGobernantes() == null) {
 				location.replace("gobierno.php");
