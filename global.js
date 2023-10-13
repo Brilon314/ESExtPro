@@ -28,18 +28,105 @@ var politics = {
 	escuelas: 0,
 	musica: 0,
 };
+var imperioFantasma = {
+	cargaImperio: function () {
+		if (LOCAL.getPoliticas() == null) {
+			imperioFantasma.cargaFantasma("https://www.empire-strike.com/politica.php", imperioFantasma.getPoliticas, LOCAL.setPoliticas);
+		}
+		if (LOCAL.getGobernantes() == null) {
+			imperioFantasma.cargaFantasma("https://www.empire-strike.com/gobierno.php", imperioFantasma.getGobiernantes, LOCAL.setGobernantes);
+		}
+		if (LOCAL.getClan() ==+ null && LOCAL.getImperio().clan != "") {
+			var urlClan = "https://www.empire-strike.com/clanes.php";
+			imperioFantasma.cargaFantasma(urlClan, imperioFantasma.getMaravillas, LOCAL.setClan);
+		}
+	},
+	cargaFantasma: function (url, funcionLectura, funcionCarga) {
+		fetch(url)
+			.then((response) => {
+				// Verifica si la solicitud fue exitosa (código de estado 200)
+				if (response.status === 200) {
+					console.log('response.text():', response.text);
+					return response.text(); // Obtiene el contenido HTML como texto
+				} else {
+					throw new Error("Error en la solicitud");
+				}
+			})
+			.then((html) => {
+				// Parsea el HTML y extrae información
+				const parser = new DOMParser();
+				const doc = parser.parseFromString(html, "text/html");
+				// Utiliza métodos DOM para acceder y extraer datos
+				funcionCarga(funcionLectura(doc));
+				return funcionLectura(doc);
+			})
+			.catch((error) => {
+				console.error("Ocurrió un error al hacer la solicitud HTTP:", error);
+			});
+	},
+	getMaravillas: function (doc) {
+		var miClan = {
+			maravilla1: null,
+			maravilla2: null,
+		};
+		if (doc.getElementById("_ayudam1") == null) return miClan;
+		miClan.maravilla1 = doc.querySelector("#_ayudam1 h3").innerText;
+
+		if (doc.getElementById("_ayudam2") == null) return miClan;
+		miClan.maravilla2 = doc.querySelector("#_ayudam2 h3").innerText;
+		return miClan;
+	},
+	getGobiernantes: function (doc) {
+		var gobernantes = [];
+		var n_regiones = 0;
+		switch (GLOBAL.getPartida()) {
+			case "KENARON":
+			case "GARDIS":
+				n_regiones = 30;
+				break;
+			case "ZULA":
+			case "NUMIAN":
+				n_regiones = 16;
+				break;
+			case "FANTASY":
+				n_regiones = 15;
+		}
+		for (i = 1; i <= n_regiones; i++) {
+			gobernantes[i] = doc
+				.getElementById("region" + i)
+				.innerText.trim()
+				.substring(0, 3);
+		}
+		return gobernantes;
+	},
+	getPoliticas: function (doc) {
+		var politica = {};
+		doc.querySelectorAll(".lista1 tr").forEach(function callback(obj, index) {
+			if (index == 0 || obj.children.length < 3) return;
+			var contador = 0;
+			for (var i = 0; i < 10; i++) {
+				if (obj.children[4].children[i].src == "https://images.empire-strike.com/v2/interfaz/estrella-roja.png") contador = contador + 1;
+				else break;
+			}
+			var nombre = obj.children[1].innerText.trim().split("Coste: ");
+			politica[imperioFantasma.normalizar(nombre[0])] = contador;
+		});
+		return politica;
+	},
+	//borra tildes, espacios, y transforma en minusculas.
+	normalizar: function (str) {
+		return str
+			.toLowerCase()
+			.replaceAll(" ", "")
+			.normalize("NFD")
+			.replace(/[\u0300-\u036f]/g, "");
+	},
+};
 
 function alwaysDo() {
-	// Comprueba si la página actual es una de las que deseas monitorear
-	if (window.location.href === "https://www.empire-strike.com/gobierno.php" || window.location.href === "https://www.empire-strike.com/politica.php") {
-		// Guarda en el localStorage que la página fue visitada
-		localStorage.setItem(window.location.href, "visited");
-	}
-
 	// ------------- Forzar fuente específica ------------- //
 
 	// document.body.style.fontFamily = 'Times New Roman';
-
 	var elements = document.querySelectorAll(".lista2 td");
 	elements.forEach(function (element) {
 		element.style.fontSize = "0.9em";
@@ -61,13 +148,6 @@ function alwaysDo() {
 	styleSheet.innerText = css;
 	document.head.appendChild(styleSheet);
 
-	/// testing
-
-	/// testing
-	//GLOBAL.checkNews();
-	//GLOBAL.updateRecursos();
-	//GLOBAL.getCode();
-
 	var botonaZong = new Audio(chrome.runtime.getURL("base/button.mpeg"));
 	var accion = function () {
 		var carga = {
@@ -86,6 +166,7 @@ function alwaysDo() {
 	elementoLista.innerHTML = `<li><a href="ultimosataques.php">Ataques recibidos</a></li>`;
 	document.querySelector("#sinfo  ul").children[2].innerHTML = `<a href="ultimosataquestuyos.php">Ataques realizados</a>`;
 	document.querySelector("#sinfo  ul").children[2].before(elementoLista);
+	imperioFantasma.cargaImperio();
 }
 
 var GLOBAL = {

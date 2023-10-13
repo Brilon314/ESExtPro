@@ -151,31 +151,12 @@ var LOCAL = {
     localStorage[LOCAL_POLITICAS] = JSON.stringify(obj);
   },
   getPoliticas: function () {
+    if (localStorage[LOCAL_POLITICAS] == undefined || localStorage[LOCAL_POLITICAS] == null) return null;
+
+    return JSON.parse(localStorage[LOCAL_POLITICAS]);
+  },
+  /*  getPoliticas: function () {
     if (!localStorage[LOCAL_POLITICAS]) {
-      /*var politics = {
-        losdioses: 0,
-        magiaarcana: 0,
-        rituales: 0,
-        cultodemoniaco: 0,
-        arquitectura: 0,
-        rutasdecontrabando: 0,
-        profundidadcuevas: 0,
-        esclavitud: 0,
-        patriotismo: 0,
-        serviciomilitar: 0,
-        torturas: 0,
-        aduanas: 0,
-        naturaleza: 0,
-        libertadpolitica: 0,
-        burguesia: 0,
-        gremios: 0,
-        lamujer: 0,
-        nobleza: 0,
-        justicia: 0,
-        medicina: 0,
-        escuelas: 0,
-        musica: 0,
-      };*/
       var pol = politics;
       // return JSON.parse(localStorage[politics]);
       LOCAL.setPoliticas(pol);
@@ -183,11 +164,11 @@ var LOCAL = {
     } else {
       return JSON.parse(localStorage[LOCAL_POLITICAS]);
     }
-  },
+  },*/
   setGobernantes: function (obj) {
     localStorage[LOCAL_GOBERNANTES] = JSON.stringify(obj);
   },
-/*  getGobernantes: function () {
+  /*  getGobernantes: function () {
     if (localStorage[LOCAL_GOBERNANTES] == undefined || localStorage[LOCAL_GOBERNANTES] == null) {
       // return null;
       var gobernante = [];
@@ -215,9 +196,8 @@ var LOCAL = {
       GLOBAL.cargaImperio();
     }
   },*/
-  getGobernantes:function(){
-    if(localStorage[LOCAL_GOBERNANTES] == undefined || localStorage[LOCAL_GOBERNANTES] == null)
-      return null;
+  getGobernantes: function () {
+    if (localStorage[LOCAL_GOBERNANTES] == undefined || localStorage[LOCAL_GOBERNANTES] == null) return null;
 
     return JSON.parse(localStorage[LOCAL_GOBERNANTES]);
   },

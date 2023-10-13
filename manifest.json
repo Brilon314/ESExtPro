@@ -59,8 +59,9 @@
 			"js": [
 				"base/jquery.min.js",
 				"base/util.js",
-				"global.js",
 				"localstorage.js",
+				/*"cargaimperio.js",*/
+				"global.js",
 				"base/datos.js",
 				"api.js",
 				"ws_atacar.js",
@@ -97,7 +98,7 @@
 		},
 		{
 			"matches": ["https://www.empire-strike.com/tuimperio.php"],
-			"js": ["base/jquery.min.js", "ws_imperio.js"]
+			"js": ["base/jquery.min.js", "localstorage.js", "ws_imperio.js"]
 		},
 		{
 			"matches": ["https://www.empire-strike.com/quest.php?*"],
