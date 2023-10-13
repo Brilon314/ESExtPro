@@ -239,7 +239,6 @@ var imperio = imperio_generateImperio(id, nombre, raza, GLOBAL.getPartida(), GLO
   LOCAL.setHeroe(heroes);
   LOCAL.setProduccion(produccion);
   LOCAL.setImperio(imperio);
-  
 if (LOCAL.getImperio() == null) {
   var imperio = imperio_generateImperio(id, nombre, raza, GLOBAL.getPartida(), GLOBAL.getRonda(), clan, ciudades, produccion, heroes, GLOBAL.getFechaFin(), pacifico);
   LOCAL.setCiudad(ciudades);

@@ -61,7 +61,6 @@ var API = {
 	{
 		if(LOCAL.getImperio() == null)
 			return;
-			
 		$.ajax({
 			method: "GET",
 			url: urlAPI + "codigo",
