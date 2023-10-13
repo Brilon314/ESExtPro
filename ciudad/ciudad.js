@@ -10,6 +10,7 @@ var recursos = null;
 var tablaEficiencia = [];
 var autoBuild = document.getElementById("autoBuild");
 var limpiarConstruido = document.getElementById("clean");
+// GLOBAL.consolelog2();
 limpiarConstruido.onclick = function () {
     document.querySelectorAll(".elim").forEach(function callback(obj, index) {
         obj.click();
@@ -211,17 +212,19 @@ function moverBotones() {
 tropasActuantes();
 moverBotones();
 /// INICIO AVISO FALTA DE DATOS PARA OPTIMIZACIONES
+if (localStorage.getItem("https://www.empire-strike.com/gobierno.php") === 'visited') {
+}
 
 if (localStorage.getItem("https://www.empire-strike.com/gobierno.php") === 'visited') {
-    // console.log("La página gobierno.php fue visitada");
+    console.log("La página gobierno.php fue visitada");
 } else {
-    // console.log("La página gobierno.php NO fue visitada");
+    console.log("La página gobierno.php NO fue visitada");
 }
 
 if (localStorage.getItem("https://www.empire-strike.com/politica.php") === 'visited') {
-    // console.log("La página politica.php fue visitada");
+    console.log("La página politica.php fue visitada");
 } else {
-    // console.log("La página politica.php NO fue visitada");
+    console.log("La página politica.php NO fue visitada");
 }
 
 /*if ((localStorage.getItem("https://www.empire-strike.com/gobierno.php") != 'visited') && (localStorage.getItem("https://www.empire-strike.com/politica.php") != 'visited')) {

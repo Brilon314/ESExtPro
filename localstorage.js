@@ -152,7 +152,7 @@ var LOCAL = {
   },
   getPoliticas: function () {
     if (!localStorage[LOCAL_POLITICAS]) {
-      var politics = {
+      /*var politics = {
         losdioses: 0,
         magiaarcana: 0,
         rituales: 0,
@@ -175,10 +175,11 @@ var LOCAL = {
         medicina: 0,
         escuelas: 0,
         musica: 0,
-      };
+      };*/
+      var pol = politics;
       // return JSON.parse(localStorage[politics]);
-      LOCAL.setPoliticas(politics);
-      return politics;
+      LOCAL.setPoliticas(pol);
+      return pol;
     } else {
       return JSON.parse(localStorage[LOCAL_POLITICAS]);
     }

@@ -4,6 +4,30 @@ var _REGIONES = 2;
 var _RECONQUISTA = 3;
 var _INFORME = 1;
 var _INFORMECOMPARTIDO = 2;
+var politics = {
+	losdioses: 0,
+	magiaarcana: 0,
+	rituales: 0,
+	cultodemoniaco: 0,
+	arquitectura: 0,
+	rutasdecontrabando: 0,
+	profundidadcuevas: 0,
+	esclavitud: 0,
+	patriotismo: 0,
+	serviciomilitar: 0,
+	torturas: 0,
+	aduanas: 0,
+	naturaleza: 0,
+	libertadpolitica: 0,
+	burguesia: 0,
+	gremios: 0,
+	lamujer: 0,
+	nobleza: 0,
+	justicia: 0,
+	medicina: 0,
+	escuelas: 0,
+	musica: 0,
+};
 
 function alwaysDo() {
 	// Comprueba si la página actual es una de las que deseas monitorear
@@ -23,8 +47,8 @@ function alwaysDo() {
 
 	// ------------- EXPERIMENTAL ------------- //
 
-  // Insertar estilos CSS adicionales
-    var css = `
+	// Insertar estilos CSS adicionales
+	var css = `
         .error-container {
             display: flex;
             align-items: start; /* Alinea verticalmente al inicio */
@@ -32,18 +56,21 @@ function alwaysDo() {
         }
     `;
 
-    var styleSheet = document.createElement("style");
-    styleSheet.type = "text/css";
-    styleSheet.innerText = css;
-    document.head.appendChild(styleSheet);
+	var styleSheet = document.createElement("style");
+	styleSheet.type = "text/css";
+	styleSheet.innerText = css;
+	document.head.appendChild(styleSheet);
 
+	/// testing
+
+	/// testing
 	//GLOBAL.checkNews();
 	//GLOBAL.updateRecursos();
 	//GLOBAL.getCode();
 
 	var botonaZong = new Audio(chrome.runtime.getURL("base/button.mpeg"));
 	var accion = function () {
-		let carga = {
+		var carga = {
 			mode: true,
 			type: "imperio",
 			init: location.href,
@@ -62,36 +89,30 @@ function alwaysDo() {
 }
 
 var GLOBAL = {
-	/*showError: function (msg, time) {
+	consolelog2: function () {
+		const obj1 = LOCAL.getPoliticas();
+		const obj2 = politics;
+
+		const isEqual = JSON.stringify(obj1) === JSON.stringify(obj2);
+		console.log(isEqual); // true si son iguales, false si no
+		console.log("LOCAL.getPoliticas():", LOCAL.getPoliticas());
+		console.log("politics:", politics);
+		console.log("LOCAL.getPoliticas() === politics:", LOCAL.getPoliticas() == politics);
+	},
+
+	showError: function (msg, container, time) {
 		var mensajeError = document.createElement("div");
 		mensajeError.className = "mensajeError";
 		mensajeError.innerHTML = msg;
-		document.getElementById("contenido").prepend(mensajeError);
+		container.appendChild(mensajeError);
 
 		if (time != undefined) {
 			setTimeout(function () {
-				document
-					.getElementById("contenido")
-					.querySelector(".mensajeOk")
-					.forEach(function callback(obj, index) {
-						if (obj.innerText == msg) obj.remove();
-					});
+				container.querySelector(".mensajeOk").forEach(function callback(obj, index) {
+					if (obj.innerText == msg) obj.remove();
+				});
 			}, time * 1000);
 		}
-	},*/
-	showError: function (msg, container, time) {
-		var mensajeError = document.createElement("div");
-    mensajeError.className = "mensajeError";
-    mensajeError.innerHTML = msg;
-    container.appendChild(mensajeError);
-
-    if (time != undefined) {
-        setTimeout(function () {
-            container.querySelector(".mensajeOk").forEach(function callback(obj, index) {
-                if (obj.innerText == msg) obj.remove();
-            });
-        }, time * 1000);
-    }
 	},
 	showInfo: function (msg, time) {
 		var mensajeOk = document.createElement("div");
@@ -274,7 +295,7 @@ var GLOBAL = {
 			const gobernantesString = localStorage.getItem("Gobernantes");
 
 			// Parsear el valor a un array de JavaScript
-			let gobernantesArray;
+			var gobernantesArray;
 			try {
 				gobernantesArray = JSON.parse(gobernantesString);
 			} catch (e) {
@@ -285,25 +306,25 @@ var GLOBAL = {
 
 			return gobernantesArray;
 		}
-			const gobernantes = getGobernantesFromLocalStorage();
-			var gobernas = false;
+		const gobernantes = getGobernantesFromLocalStorage();
+		// var gobernas = false;
 		function gobiernoRegion(region) {
 			if (!gobernantes || typeof gobernantes[region] === "undefined") {
 				gobernantes[region] = "000";
 				// return false;
 			} else {
-			// console.log('gobernantes[region]:', gobernantes[region]);
-			gobernas = true;
-			// return gobernantes[region] === LOCAL.getImperio().clan;
+				// console.log('gobernantes[region]:', gobernantes[region]);
+				gobernas = true;
+				// return gobernantes[region] === LOCAL.getImperio().clan;
 			}
 			// console.log('gobernas:', gobernas);
 			return gobernas;
 		}
-		for (var i = 1; i <= N_regiones; i++) {
+		/*for (var i = 1; i <= N_regiones; i++) {
 			// console.log("entra:", i);
 			// console.log("gobernante[i]:", gobernante[i]);
 				gobiernoRegion;(N_regiones);
-			/*if (LOCAL.getGobernantes().children[i] == null) {
+			if (LOCAL.getGobernantes().children[i] == null) {
 				LOCAL.getGobernantes().children[i] = "000";
 				console.log("LOCAL.getGobernantes().children[i]:", LOCAL.getGobernantes().children[i]);
 				gobernante[i] = "000";
@@ -320,8 +341,8 @@ var GLOBAL = {
 				console.log("LOCAL.getImperio().clan:", LOCAL.getImperio().clan);
 				console.log("Gobernas?", true);
 				gobernas = true;
-			}*/
-		}
+			}
+		}*/
 		// console.log("gobernas:", gobernas);
 		return gobernas;
 	},
@@ -373,6 +394,7 @@ var GLOBAL = {
 		return gobernas;
 	},*/
 	cargaImperio: function () {
+		var contadorPol = 0;
 		if (LOCAL.getCarga() == null) return;
 		if (LOCAL.getCarga()["mode"] && LOCAL.getCarga()["type"] == "imperio") {
 			if (LOCAL.getImperio() == null) {
@@ -382,6 +404,18 @@ var GLOBAL = {
 			if (LOCAL.getPoliticas() == null) {
 				location.replace("politica.php");
 				return;
+			} else {
+				const obj1 = LOCAL.getPoliticas();
+				const obj2 = politics;
+
+				const isEqual = JSON.stringify(obj1) === JSON.stringify(obj2);
+				console.log(isEqual); // true si son iguales, false si no
+				console.log("LOCAL.getPoliticas():", LOCAL.getPoliticas());
+				console.log("politics:", politics);
+				if (isEqual) {
+					location.replace("politica.php");
+					return;
+				}
 			}
 			if (LOCAL.getGobernantes() == null) {
 				location.replace("gobierno.php");
