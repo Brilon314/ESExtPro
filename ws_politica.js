@@ -22,25 +22,21 @@ medicina          : 0,
 escuelas          : 0,
 musica            : 0
 }
-  
-document.querySelectorAll(".lista1 tr").forEach(function callback(obj, index) {
-	if(index == 0)
-        return;
 
-    if(obj.children.length < 3)
-	   return;  
+document.querySelectorAll(".lista1 tr").forEach(function callback(obj, index) {
+    if (index == 0) return;
+
+    if (obj.children.length < 3) return;
 
     var nombre = obj.children[1].innerText.trim();
-    var contador= 0;
+    var contador = 0;
     for (var i = 0; i < 10; i++) {
-        if(obj.children[4].children[i].src=="https://images.empire-strike.com/v2/interfaz/estrella-roja.png")
-            contador=contador+1;
-        else
-            break;
+        if (obj.children[4].children[i].src == "https://images.empire-strike.com/v2/interfaz/estrella-roja.png") contador = contador + 1;
+        else break;
     }
-    nombre=nombre.split("Coste: ");
-    nombre= borrarAcentos(nombre[0].toLowerCase().replace(" ","").replace(" ",""));
-    politicas[nombre]=contador;
+    nombre = nombre.split("Coste: ");
+    nombre = borrarAcentos(nombre[0].toLowerCase().replace(" ", "").replace(" ", ""));
+    politicas[nombre] = contador;
 });
 LOCAL.setPoliticas(politicas);
 GLOBAL.cargaImperio();
@@ -75,7 +71,7 @@ function borrarAcentos(str){
 //     $(arr).each(function() {
 //      sel.append($("<option style='display: inline'>").attr('value',this.val).text(this.text));
 //     });
-     
+
 
 // });
 
@@ -84,7 +80,7 @@ function borrarAcentos(str){
 //     let container = document.getElementById("hdioses");
 //     let newDiv = document.createElement("div");
 //     newDiv.setAttribute("id", "new-div");
-      
+
 //     newDiv.innerHTML = `<div>this content to append</div>`
 //     container.prepend(newDiv);
 
@@ -96,7 +92,7 @@ function borrarAcentos(str){
     //     return;
 
     // if(obj.children.length < 3)
-    //    return;  
+    //    return;
 
     // var nombre = obj.children[1].innerText.trim();
     // var contador= 0;
@@ -115,7 +111,7 @@ function creaBoton(obj,nombre,accion){
         //crear boton
         const button = document.createElement('button');
         button.setAttribute("id", nombre);
-        button.type = 'button'; 
+        button.type = 'button';
         button.innerText = nombre;
         button.onclick = accion;
         button.className= "boton-papiro";

@@ -19,10 +19,10 @@ var LOCAL_CLAN = "Clan";
 var aa = "ss";
 
 if (aa == "s") {
-	localStorage[AUTOA] = JSON.stringify(true);
+  localStorage[AUTOA] = JSON.stringify(true);
 }
 else{
-	localStorage[AUTOA] = JSON.stringify(false);
+  localStorage[AUTOA] = JSON.stringify(false);
 }
 */
 var LOCAL = {
@@ -32,10 +32,10 @@ var LOCAL = {
       localStorage.removeItem(key);
     }
   },
-  /*	getautoA:function(){
+  /*  getautoA:function(){
 
-  		return JSON.parse(localStorage[AUTOA]);
-  	},*/
+      return JSON.parse(localStorage[AUTOA]);
+    },*/
   setValor: function (valor) {
     localStorage[LOCAL_VALOR] = valor;
   },
@@ -43,10 +43,10 @@ var LOCAL = {
     if (localStorage[LOCAL_VALOR] == undefined || localStorage[LOCAL_VALOR] == null) return 0;
     else return parseInt(localStorage[LOCAL_VALOR]);
   },
-/*  getSistemaDefensivo: function () {
+  /*  getSistemaDefensivo: function () {
     if (localStorage[LOCAL_VALOR] == undefined || localStorage[LOCAL_VALOR] == null) return 0;
     else {
-    	return parseInt(localStorage[LOCAL_VALOR]);}
+      return parseInt(localStorage[LOCAL_VALOR]);}
   },*/
   setAsedio: function (asedio) {
     var newAsedios = new Array();
@@ -61,7 +61,7 @@ var LOCAL = {
         else newAsedios.push(currentAsedios[i]);
         continue;
       }
-      if (new Date(currentAsedios[i].fecha).timeElapsed() <= (_dayInMilisecond * 6)) newAsedios.push(currentAsedios[i]);
+      if (new Date(currentAsedios[i].fecha).timeElapsed() <= _dayInMilisecond * 6) newAsedios.push(currentAsedios[i]);
     }
     if (!exists) newAsedios.push(asedio);
     localStorage[LOCAL_ASEDIOS] = JSON.stringify(newAsedios);
@@ -71,8 +71,7 @@ var LOCAL = {
     var partida = GLOBAL.getPartida();
     if (localStorage[LOCAL_ASEDIOS] != undefined && localStorage[LOCAL_ASEDIOS] != null) currentAsedios = JSON.parse(localStorage[LOCAL_ASEDIOS]);
     else return null;
-    for (var i = 0; i < currentAsedios.length; i++)
-      if (currentAsedios[i].idCiudad == idCiudad && currentAsedios[i].partida == partida) return currentAsedios[i];
+    for (var i = 0; i < currentAsedios.length; i++) if (currentAsedios[i].idCiudad == idCiudad && currentAsedios[i].partida == partida) return currentAsedios[i];
   },
   getAsedioByName: function (nombreCiudad) {
     var partida = GLOBAL.getPartida();
@@ -97,11 +96,10 @@ var LOCAL = {
     var asedios = [];
     if (localStorage[LOCAL_ASEDIOS] != undefined && localStorage[LOCAL_ASEDIOS] != null) currentAsedios = JSON.parse(localStorage[LOCAL_ASEDIOS]);
     else return asedios;
-    for (var i = 0; i < currentAsedios.length; i++)
-      if (currentAsedios[i].marcado && currentAsedios[i].partida == partida) asedios.push(currentAsedios[i]);
+    for (var i = 0; i < currentAsedios.length; i++) if (currentAsedios[i].marcado && currentAsedios[i].partida == partida) asedios.push(currentAsedios[i]);
     asedios = asedios.sort(function (a, b) {
       return new Date(a.fecha) >= new Date(b.fecha);
-    })
+    });
     return asedios;
   },
   setImperio: function (obj) {
@@ -153,14 +151,73 @@ var LOCAL = {
     localStorage[LOCAL_POLITICAS] = JSON.stringify(obj);
   },
   getPoliticas: function () {
-    if (localStorage[LOCAL_POLITICAS] == undefined || localStorage[LOCAL_POLITICAS] == null) return null;
-    return JSON.parse(localStorage[LOCAL_POLITICAS]);
+    if (!localStorage[LOCAL_POLITICAS]) {
+      var politics = {
+        losdioses: 0,
+        magiaarcana: 0,
+        rituales: 0,
+        cultodemoniaco: 0,
+        arquitectura: 0,
+        rutasdecontrabando: 0,
+        profundidadcuevas: 0,
+        esclavitud: 0,
+        patriotismo: 0,
+        serviciomilitar: 0,
+        torturas: 0,
+        aduanas: 0,
+        naturaleza: 0,
+        libertadpolitica: 0,
+        burguesia: 0,
+        gremios: 0,
+        lamujer: 0,
+        nobleza: 0,
+        justicia: 0,
+        medicina: 0,
+        escuelas: 0,
+        musica: 0,
+      };
+      // return JSON.parse(localStorage[politics]);
+      LOCAL.setPoliticas(politics);
+      return politics;
+    } else {
+      return JSON.parse(localStorage[LOCAL_POLITICAS]);
+    }
   },
   setGobernantes: function (obj) {
     localStorage[LOCAL_GOBERNANTES] = JSON.stringify(obj);
   },
-  getGobernantes: function () {
-    if (localStorage[LOCAL_GOBERNANTES] == undefined || localStorage[LOCAL_GOBERNANTES] == null) return null;
+/*  getGobernantes: function () {
+    if (localStorage[LOCAL_GOBERNANTES] == undefined || localStorage[LOCAL_GOBERNANTES] == null) {
+      // return null;
+      var gobernante = [];
+      var n_regiones = 15;
+      switch (GLOBAL.getPartida()) {
+        case "KENARON":
+        case "GARDIS":
+          n_regiones = 30;
+          break;
+        case "ZULA":
+        case "NUMIAN":
+          n_regiones = 16;
+          break;
+        case "FANTASY":
+          n_regiones = 15;
+      }
+      for (i = 1; i <= n_regiones; i++) {
+        gobernante[i] = "000";
+      }
+      //LOCAL.setGobernantes(gobernante);
+      return JSON.parse(localStorage[gobernante]);
+      GLOBAL.cargaImperio();
+    } else {
+      return JSON.parse(localStorage[LOCAL_GOBERNANTES]);
+      GLOBAL.cargaImperio();
+    }
+  },*/
+  getGobernantes:function(){
+    if(localStorage[LOCAL_GOBERNANTES] == undefined || localStorage[LOCAL_GOBERNANTES] == null)
+      return null;
+
     return JSON.parse(localStorage[LOCAL_GOBERNANTES]);
   },
   setFormaciones: function (obj) {
@@ -211,5 +268,5 @@ var LOCAL = {
   getClan: function () {
     if (localStorage[LOCAL_CLAN] == undefined || localStorage[LOCAL_CLAN] == null) return null;
     return JSON.parse(localStorage[LOCAL_CLAN]);
-  }
+  },
 };

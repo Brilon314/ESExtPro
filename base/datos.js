@@ -15,7 +15,7 @@ const MINIMOS = {
 	"RELIQUIAS"     : 40,
 	"GEMAS"         : 20,
 	"JOYAS"         : 25,
-	"ORO"			: 1,
+	"ORO"						: 1,
 	"FAMA"			: (5000+LOCAL.getValor())/3,
 	"TURNOS"        : 56000*GLOBAL.getClanCantidad()/12*GLOBAL.getClanCantidad()+1,
 	"KARMA"         : 70/15*GLOBAL.getClanCantidad(),

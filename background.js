@@ -6,12 +6,7 @@ chrome.action.onClicked.addListener(
 
 
 
-// ------------- Forzar fuente específica ------------- //
 
-$("body").css('font-family','"Times New Roman", Times, serif !important');
-$(".lista2 td").css('font-size: 1em');
-
-// ------------- EXPERIMENTAL ------------- //
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.message == "addAsedio")
