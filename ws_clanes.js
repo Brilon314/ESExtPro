@@ -36,8 +36,8 @@ function clanes()
 			});
 	});
 
-	API.getClan(imperios, clanes_updateInformation);
 }
+	//API.getClan(imperios, clanes_updateInformation);
 
 function clanes_updateInformation(data)
 {

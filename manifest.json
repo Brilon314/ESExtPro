@@ -60,7 +60,7 @@
 				"base/jquery.min.js",
 				"base/util.js",
 				"localstorage.js",
-				/*"cargaimperio.js",*/
+				"cargaimperio.js",
 				"global.js",
 				"base/datos.js",
 				"api.js",
