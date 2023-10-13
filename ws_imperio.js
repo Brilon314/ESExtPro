@@ -65,24 +65,12 @@ if (table2) {
 // FIN OBTIENE DATOS PARA BOTON TODAS LAS CIUDADES
 var raza = $($("#datos tr td")[2]).html();
 var clan = "";
-if (
-  $($("#datos td")[5])
-    .html()
-    .match(/\(...\)/g) != null &&
-  $($("#datos td")[5])
-    .html()
-    .match(/\(...\)/g).length == 1
-)
-  clan = $($("#datos td")[5])
-    .html()
-    .match(/\(...\)/g)[0]
-    .replace("(", "")
-    .replace(")", "");
+if ($($("#datos td")[5]).html().match(/\(...\)/g) != null && $($("#datos td")[5]).html().match(/\(...\)/g).length == 1) clan = $($("#datos td")[5]).html().match(/\(...\)/g)[0].replace("(", "").replace(")", "");
 var ciudades = new Array();
 var heroes = new Array();
 var produccion = {};
 //#datos > tbody > tr:nth-child(3) > td:nth-child(3)
-var ib = $("#datos > tbody > tr:nth-child(3) > td:nth-child(3)")[0].outerText.replace("Índice Bélico", "").split("%")[0].replace(",", ".").trim();
+var ib = $("#datos > tbody > tr:nth-child(3) > td:nth-child(3)")[0].outerText.replace('Índice Bélico', '').split('%')[0].replace(',', '.').trim();
 //Formula 0.1*(100 - IB actual)
 var ibReducidoAlPaso = 0.1 * (100 - ib);
 var ibAlPaso = (ib - ibReducidoAlPaso).toFixed(1);
@@ -116,18 +104,10 @@ $(".lista2:not(:first) tr").each(function (index, obj) {
   var recursos = $(obj.children[8]).text().trim().replace(/\./g, "");
   var edificios = $(obj.children[9]).text().trim();
   var fama = parseInt($(obj.children[5]).text().trim().substring(0, 3));
-  var moral = $(obj.children[14 - sinRutas])
-    .text()
-    .trim()
-    .replace("%", "");
+  var moral = $(obj.children[14 - sinRutas]).text().trim().replace("%", "");
   var defensa = obj.children[1].children[0].children[1].src.replace("https://images.empire-strike.com/archivos/sistemas_defensivos/25/", "").replace(".jpg", "");
-  var proteccion = $(obj.children[15 - sinRutas])
-    .text()
-    .trim();
-  var tropas = $(obj.children[12 - sinRutas])
-    .text()
-    .trim()
-    .replace(/\./g, "");
+  var proteccion = $(obj.children[15 - sinRutas]).text().trim();
+  var tropas = $(obj.children[12 - sinRutas]).text().trim().replace(/\./g, "");
   famaProduccion = famaProduccion + parseInt(obj.children[5].innerText.split("+")[1].trim());
   if (proteccion == "SP" || proteccion == "CU") {
     ciudades.push(imperio_generateCiudad(id, idCiudad, nombre, region, poblacion, edificios, oro, recursos, fama, moral, defensa, tropas, proteccion));
@@ -165,39 +145,39 @@ $(".lista2:first tr").each(function (index, obj) {
 // OBTENER PRODUCCION
 $("#cuadro_produccion .contenido table tr").each(function (index, obj) {
   switch (index) {
-    case 0:
-      produccion.turnos = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
-      produccion.hierro = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
-      produccion.herramientas = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
-      produccion.armas = parseInt($(obj.children[8]).text().replace(/\./g, "").trim());
-      break;
-    case 1:
-      produccion.mana = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
-      produccion.piedra = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
-      produccion.bloques = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
-      break;
-    case 2:
-      produccion.karma = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
-      produccion.madera = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
-      produccion.tablas = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
-      break;
-    case 3:
-      produccion.oro = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
-      produccion.mithril = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
-      produccion.reliquias = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
-      break;
-    case 4:
-      produccion.alimentos = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
-      produccion.plata = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
-      produccion.joyas = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
-      break;
-    case 5:
-      produccion.agua = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
-      produccion.gemas = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
-      produccion.cristal = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
-      break;
-    default:
-      return;
+  case 0:
+    produccion.turnos = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
+    produccion.hierro = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
+    produccion.herramientas = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
+    produccion.armas = parseInt($(obj.children[8]).text().replace(/\./g, "").trim());
+    break;
+  case 1:
+    produccion.mana = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
+    produccion.piedra = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
+    produccion.bloques = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
+    break;
+  case 2:
+    produccion.karma = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
+    produccion.madera = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
+    produccion.tablas = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
+    break;
+  case 3:
+    produccion.oro = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
+    produccion.mithril = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
+    produccion.reliquias = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
+    break;
+  case 4:
+    produccion.alimentos = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
+    produccion.plata = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
+    produccion.joyas = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
+    break;
+  case 5:
+    produccion.agua = parseInt($(obj.children[1]).text().replace(/\./g, "").trim());
+    produccion.gemas = parseInt($(obj.children[3]).text().replace(/\./g, "").trim());
+    produccion.cristal = parseInt($(obj.children[6]).text().replace(/\./g, "").trim());
+    break;
+  default:
+    return
   }
 });
 // CREAR BOTON TODAS LAS CIUDADES
@@ -218,7 +198,7 @@ openAllButton.appendChild(houseImg);
 // Añade un evento de clic al botón
 openAllButton.onclick = function () {
   cityLinks.forEach((url) => {
-    window.open(url, "_blank"); // Abre cada ciudad en una nueva pestaña
+    window.open(url, '_blank'); // Abre cada ciudad en una nueva pestaña
   });
 };
 // Encuentra la etiqueta <h3> donde quieres insertar el botón
@@ -233,19 +213,12 @@ if (h3Tag) {
   console.log("No se encontró la etiqueta <h3>.");
 }
 // FIN CREAR BOTON TODAS LAS CIUDADES
-
-var imperio = imperio_generateImperio(id, nombre, raza, GLOBAL.getPartida(), GLOBAL.getRonda(), clan, ciudades, produccion, heroes, GLOBAL.getFechaFin(), pacifico);
-  LOCAL.setCiudad(ciudades);
-  LOCAL.setHeroe(heroes);
-  LOCAL.setProduccion(produccion);
-  LOCAL.setImperio(imperio);
-  
 if (LOCAL.getImperio() == null) {
   var imperio = imperio_generateImperio(id, nombre, raza, GLOBAL.getPartida(), GLOBAL.getRonda(), clan, ciudades, produccion, heroes, GLOBAL.getFechaFin(), pacifico);
   LOCAL.setCiudad(ciudades);
   LOCAL.setHeroe(heroes);
   LOCAL.setProduccion(produccion);
-  LOCAL.setImperio(imperio);
+  LOCAL.setImperio(imperio)
   //API.setRutasHeroku(id,GLOBAL.getPartida(),clan,GLOBAL.getRonda(),ciudades)
   //API.setImperio(id, nombre, raza, GLOBAL.getPartida(), GLOBAL.getRonda(), clan, ciudades, produccion, heroes, GLOBAL.getFechaFin());
 } else {
@@ -291,55 +264,55 @@ GLOBAL.cargaImperio();
 
 function imperio_generateCiudad(idImperio, idCiudad, nombre, region, poblacion, edificios, oro, recursos, fama, moral, defensa, tropas, proteccion) {
   return {
-    id: idImperio,
-    idCiudad: idCiudad,
-    nombre: nombre,
-    region: region,
-    poblacion: poblacion,
-    edificios: edificios,
-    oro: oro,
-    recursos: recursos,
-    fama: fama,
-    moral: moral,
-    defensa: defensa,
-    tropas: tropas,
-    proteccion: proteccion,
-    cargada: false,
-    data: null,
-  };
+    "id": idImperio,
+    "idCiudad": idCiudad,
+    "nombre": nombre,
+    "region": region,
+    "poblacion": poblacion,
+    "edificios": edificios,
+    "oro": oro,
+    "recursos": recursos,
+    "fama": fama,
+    "moral": moral,
+    "defensa": defensa,
+    "tropas": tropas,
+    "proteccion": proteccion,
+    "cargada": false,
+    "data": null
+  }
 }
 
 function imperio_generateHeroe(nombre, clase, nivel, ataque, defensa, daño, vida, velocidad, moral, energia, habilidad, victorias, region, tropas) {
   return {
-    nombre: nombre,
-    clase: clase,
-    nivel: nivel,
-    ataque: ataque,
-    defensa: defensa,
-    daño: daño,
-    vida: vida,
-    velocidad: velocidad,
-    moral: moral,
-    energia: energia,
-    habilidad: habilidad,
-    victorias: victorias,
-    region: region,
-    tropas: tropas,
-  };
+    "nombre": nombre,
+    "clase": clase,
+    "nivel": nivel,
+    "ataque": ataque,
+    "defensa": defensa,
+    "daño": daño,
+    "vida": vida,
+    "velocidad": velocidad,
+    "moral": moral,
+    "energia": energia,
+    "habilidad": habilidad,
+    "victorias": victorias,
+    "region": region,
+    "tropas": tropas
+  }
 }
 
 function imperio_generateImperio(id, name, raze, game, round, clan, ciudades, produccion, heroes, fechaFin, pacifico) {
   return {
-    id: id,
-    nombre: name,
-    raza: raze,
-    partida: game,
-    ronda: round,
-    clan: clan,
-    ciudades: ciudades,
-    produccion: produccion,
-    heroes: heroes,
-    fechaFin: fechaFin,
-    pacifico: pacifico,
-  };
+    "id": id,
+    "nombre": name,
+    "raza": raze,
+    "partida": game,
+    "ronda": round,
+    "clan": clan,
+    "ciudades": ciudades,
+    "produccion": produccion,
+    "heroes": heroes,
+    "fechaFin": fechaFin,
+    "pacifico": pacifico
+  }
 }

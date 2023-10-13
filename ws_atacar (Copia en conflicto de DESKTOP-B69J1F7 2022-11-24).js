@@ -14,6 +14,7 @@ function data(){
 	$(".combate_def span").each(function(index, obj) {
 			var trop_def = obj.innerText;
 			console.log(trop_def);});
+	
 
 }
 data();
