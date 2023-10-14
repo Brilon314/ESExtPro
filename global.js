@@ -4,8 +4,7 @@ var _REGIONES = 2;
 var _RECONQUISTA = 3;
 var _INFORME = 1;
 var _INFORMECOMPARTIDO = 2;
-<<<<<<< Updated upstream
-var politics = {
+/*var politics = {
 	losdioses: 0,
 	magiaarcana: 0,
 	rituales: 0,
@@ -28,8 +27,8 @@ var politics = {
 	medicina: 0,
 	escuelas: 0,
 	musica: 0,
-};
-=======
+};*/
+
 var idClan = 0;
 var clansResult = [];
 var clans = [];
@@ -39,7 +38,8 @@ var ccclans2 = [];
 var nomclan = "";
 var enlace = "";
 var datos;
->>>>>>> Stashed changes
+var listaClanes = [];
+
 
 function alwaysDo() {
 	// Comprueba si la página actual es una de las que deseas monitorear
@@ -87,6 +87,7 @@ function alwaysDo() {
 	elementoLista.innerHTML = `<li><a href="ultimosataques.php">Ataques recibidos</a></li>`;
 	document.querySelector("#sinfo  ul").children[2].innerHTML = `<a href="ultimosataquestuyos.php">Ataques realizados</a>`;
 	document.querySelector("#sinfo  ul").children[2].before(elementoLista);
+	cargaImperio();
 }
 var GLOBAL = {
 	showError: function (msg, container, time) {
@@ -362,7 +363,7 @@ var GLOBAL = {
 };
 
 function cargaImperio() {
-	var listaClanes = [];
+	// var listaClanes = [];
 
 	if (LOCAL.getPoliticas() == null) {
 		cargaFantasma(location.origin + "/politica.php", getPoliticas, LOCAL.setPoliticas);
@@ -375,9 +376,14 @@ function cargaImperio() {
 async function ejecutarFuncionesEnOrden() {
     try {
         siglaBuscada = await obtenerClanImperio();
+        // console.log('siglaBuscada:', siglaBuscada);
 		listaClanes = await getSiglaAndLink();
+		// console.log('listaClanes:', listaClanes);
         enlace = await obtenerLinkPorSigla(siglaBuscada)
+        // console.log('enlace:', enlace);
         datos = await obtenerMaras(enlace);
+        // console.log('Maras cargadas');
+        await mostrarMensaje();
     } catch (error) {
         console.error("Ocurrió un error al ejecutar las funciones:", error);
     }
@@ -421,7 +427,7 @@ ejecutarFuncionesEnOrden();
 				const content = element.textContent;
 				const match = content.match(/\((.*?)\)/);
 				if (match && match[1]) {
-					const nomclan = match[1];
+					nomclan = match[1];
 					return nomclan; // Esto devolverá el texto entre paréntesis
 				}
 			}
@@ -441,7 +447,7 @@ ejecutarFuncionesEnOrden();
 			const parser = new DOMParser();
 			const doc = parser.parseFromString(html, "text/html");
 			const table = doc.querySelector(".lista2");
-			const clans = [];
+			// const clans = [];
 			for (let row of table.rows) {
 				const cell = row.cells[1];
 				if (cell) {
@@ -480,6 +486,13 @@ ejecutarFuncionesEnOrden();
 			}
 		} catch (error) {
 			console.error("Error obteniendo los clanes:", error);
+		}
+	}
+	async function mostrarMensaje() {
+		try {
+		console.log("Se cargaron todos los datos necesarios");
+		} catch (error) {
+			console.error("No se cargaron todos los datos necesarios.", error);
 		}
 	}
 /*	async function obtenerClanes() {

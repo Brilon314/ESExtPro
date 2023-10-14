@@ -53,31 +53,7 @@
 	"content_scripts": [
 		{
 			"matches": ["https://www.empire-strike.com/*"],
-<<<<<<< Updated upstream
-			"js": [
-				"base/jquery.min.js",
-				"base/util.js",
-				"global.js",
-				"localstorage.js",
-				"base/datos.js",
-				"api.js",
-				"ws_atacar.js",
-				"ws_escogerObjectivo.js",
-				"ws_clanes.js",
-				"ws_clan.js",
-				"ws_informes.js",
-				"ws_ultimosAtaques.js",
-				"ws_comercio.js",
-				"ws_conflictos.js",
-				"ws_ranking.js",
-				"ws_mensajes.js",
-				"ws_gobierno.js",
-				"ws_movertropas.js",
-				"content.js"
-			]
-=======
 			"js": ["base/jquery.min.js", "base/util.js", "global.js", "localstorage.js", "base/datos.js", "api.js", "ws_atacar.js", "ws_escogerObjectivo.js", "ws_clanes.js", "ws_clan.js", "ws_informes.js", "ws_ultimosAtaques.js", "ws_comercio.js", "ws_conflictos.js", "ws_ranking.js", "ws_mensajes.js", "ws_gobierno.js", "ws_movertropas.js", "content.js"]
->>>>>>> Stashed changes
 		},
 		{
 			"matches": ["https://www.empire-strike.com/ciudad.php?*"],

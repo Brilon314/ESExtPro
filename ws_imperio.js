@@ -36,7 +36,8 @@ if (table) {
         cityLinks.push(link.href);
       }
     }
-  });
+  })
+  console.log("No se encontró la tabla 1.");
 } else if (table2) {
   // Obtiene todas las filas de la tabla
   const rows = table2.querySelectorAll("tr.impar, tr.par");
@@ -54,7 +55,7 @@ if (table) {
     }
   });
 } else {
-  console.log("No se encontró la tabla.");
+  console.log("No se encontró la tabla 2.");
 }
 // FIN OBTIENE DATOS PARA BOTON TODAS LAS CIUDADES
 var raza = $($("#datos tr td")[2]).html();
