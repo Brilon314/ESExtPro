@@ -190,18 +190,7 @@ function contarTropas2() {
     sistemaDefensivo = obtenerSistemaDefensivoPorNombre(nomCiudad);
     sistemaDefensivo2 = obtenerSistemaDefensivoPorNombre(nomCiudad2);
   }
-  /*
-  // Expresión regular para extraer el nombre de la ciudad.
-    var match = element.textContent.match(/Mover todo a (.+?)\s*$/);
-    var match2 = element2.textContent.match(/Mover todo a (.+?)\s*$/);
-
-  // El nombre de la ciudad estará en matchX[1] si la expresión regular encuentra una coincidencia.
-  var nomCiudad = match ? match[1] : null;
-  var nomCiudad2 = match2 ? match2[1] : null;
-
-  sistemaDefensivo = obtenerSistemaDefensivoPorNombre(nomCiudad);
-  sistemaDefensivo2 = obtenerSistemaDefensivoPorNombre(nomCiudad2);*/
-
+ 
   /// FIN SISTEMAS DEFENSIVOS
 
   function verificarPorcentaje(elemento) {

@@ -1,10 +1,7 @@
 // ------------- Muestra los puntos hechos en el día ------------- //
 var valrank = parseInt(document.querySelector("#datos > tbody > tr:nth-child(4) > td:nth-child(3)").innerText);
-console.log(valrank);
 var valactual = parseInt(document.querySelector("#mirank > span.valor").innerHTML);
-console.log(valactual);
 var puntosdia = valactual - valrank;
-console.log(puntosdia);
 $("#datos > tbody > tr:nth-child(4)").append(`<td><b>Puntos del día: </b><div align="right" style="font-size: x-large"> ${puntosdia}</div></td>`);
 // ------------- Fin ------------- //
 //GUARDAR NOMBRE IMPERIO e ID
@@ -23,6 +20,7 @@ if (valor > 0) LOCAL.setValor(valor);
 const cityLinks = [];
 // Encuentra la tabla que contiene la lista de ciudades.
 const table = document.querySelector("#contenido > table:nth-child(8) > tbody");
+const table2 = document.querySelector("#contenido > table:nth-child(7)");
 if (table) {
   // Obtiene todas las filas de la tabla
   const rows = table.querySelectorAll("tr.impar, tr.par");
@@ -39,11 +37,7 @@ if (table) {
       }
     }
   });
-} else {
-  console.log("No se encontró la tabla.");
-}
-const table2 = document.querySelector("#contenido > table:nth-child(7)");
-if (table2) {
+} else if (table2) {
   // Obtiene todas las filas de la tabla
   const rows = table2.querySelectorAll("tr.impar, tr.par");
   // Recorre cada fila

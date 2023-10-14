@@ -1,9 +1,11 @@
 {
 	"name": "ESExtPRO - Versión Desktop",
-	"version": "0.11.10.23",
+	"version": "0.13.10.23",
 	"manifest_version": 3,
-	"description": "Continuando un largo legado.",
-	"icons": { "128": "base/icon.png" },
+	"description": "Continuando un largo legado. Y agregando al juego lo que ya debería tener.",
+	"icons": {
+		"128": "base/icon.png"
+	},
 	"background": {
 		"service_worker": "background.js"
 	},
@@ -40,12 +42,7 @@
 			"matches": ["https://www.empire-strike.com/*"]
 		},
 		{
-			"resources": [
-				"base/estrella-verde.png",
-				"base/estrella-lila.png",
-				"base/estrella-blanca.png",
-				"base/estrella-azul.png"
-			],
+			"resources": ["base/estrella-verde.png", "base/estrella-lila.png", "base/estrella-blanca.png", "base/estrella-azul.png"],
 			"matches": ["https://www.empire-strike.com/*"]
 		},
 		{
@@ -56,6 +53,7 @@
 	"content_scripts": [
 		{
 			"matches": ["https://www.empire-strike.com/*"],
+<<<<<<< Updated upstream
 			"js": [
 				"base/jquery.min.js",
 				"base/util.js",
@@ -77,23 +75,27 @@
 				"ws_movertropas.js",
 				"content.js"
 			]
+=======
+			"js": ["base/jquery.min.js", "base/util.js", "global.js", "localstorage.js", "base/datos.js", "api.js", "ws_atacar.js", "ws_escogerObjectivo.js", "ws_clanes.js", "ws_clan.js", "ws_informes.js", "ws_ultimosAtaques.js", "ws_comercio.js", "ws_conflictos.js", "ws_ranking.js", "ws_mensajes.js", "ws_gobierno.js", "ws_movertropas.js", "content.js"]
+>>>>>>> Stashed changes
 		},
 		{
 			"matches": ["https://www.empire-strike.com/ciudad.php?*"],
 			"js": [
-			"global.js",
-			"localstorage.js",
-			"base/datos.js",
-			"content.js",
-			//"ws_ciudad.js"/*,
-			"ciudad/dominio/class_edificio.js",
-			"ciudad/dominio/class_ciudad.js",
-			"ciudad/dominio/class_multiplicador.js",
-			"ciudad/dominio/class_recursos.js",
-			"ciudad/aplicacion/class_estrellas.js",
-			"ciudad/infraestructura/class_elemento_edificios.js",
-			"ciudad/infraestructura/funciones.js",
-			"ciudad/ciudad.js"/**/]
+				"global.js",
+				"localstorage.js",
+				"base/datos.js",
+				"content.js",
+				//"ws_ciudad.js"/*,
+				"ciudad/dominio/class_edificio.js",
+				"ciudad/dominio/class_ciudad.js",
+				"ciudad/dominio/class_multiplicador.js",
+				"ciudad/dominio/class_recursos.js",
+				"ciudad/aplicacion/class_estrellas.js",
+				"ciudad/infraestructura/class_elemento_edificios.js",
+				"ciudad/infraestructura/funciones.js",
+				"ciudad/ciudad.js" /**/
+			]
 		},
 		{
 			"matches": ["https://www.empire-strike.com/tuimperio.php"],
