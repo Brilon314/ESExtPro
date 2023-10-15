@@ -190,7 +190,7 @@ function contarTropas2() {
     sistemaDefensivo = obtenerSistemaDefensivoPorNombre(nomCiudad);
     sistemaDefensivo2 = obtenerSistemaDefensivoPorNombre(nomCiudad2);
   }
- 
+
   /// FIN SISTEMAS DEFENSIVOS
 
   function verificarPorcentaje(elemento) {
