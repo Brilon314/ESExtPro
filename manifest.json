@@ -44,10 +44,6 @@
 		{
 			"resources": ["base/estrella-verde.png", "base/estrella-lila.png", "base/estrella-blanca.png", "base/estrella-azul.png"],
 			"matches": ["https://www.empire-strike.com/*"]
-		},
-		{
-			"resources": ["base/button.mpeg"],
-			"matches": ["https://www.empire-strike.com/*"]
 		}
 	],
 	"content_scripts": [

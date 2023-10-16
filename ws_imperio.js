@@ -82,7 +82,7 @@ if (ib <= 15 && LOCAL.getValor() > 500) {
   $("#datos > tbody > tr:nth-child(3)").append(`<td><b>IB al paso:</b> ${ibAlPaso}%${iconoP}</td>`);
   pacifico = true;
 } else {
-  $("#datos > tbody > tr:nth-child(3)").append(`<td><b>IB al paso:</b> ${ibAlPaso}%, necesitas ${count} paso(s) para volver a pacifico</td>`);
+  $("#datos > tbody > tr:nth-child(3)").append(`<td><b>IB al paso:</b> ${ibAlPaso}%, necesitas ${count} paso(s) para volver a pacífico</td>`);
   LOCAL.setPacifico(pacifico);
 }
 // OBTENER CIUDADES

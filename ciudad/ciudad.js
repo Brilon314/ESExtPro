@@ -119,39 +119,63 @@ function estrellaAzul() {
     }
 }
 function tropasActuantes() {
-    // CANTIDAD DE TROPAS QUE ACTUAN EN LA DEFENSA DE LA CIUDAD
-    var cantTropasActivas = 0; // Esta variable llevará la cantTropasActivas de los porcentajes mayores o iguales a 5
+    let cantTropasActivas = 0;
+    let cantTropasInactivas = 0;
+
     const tropas = document.querySelectorAll("span.porcentajetropas");
-    tropas.forEach(function callback(obj, index) {
-        // Elimina el símbolo '%' y convierte el texto en un número
-        var porcentaje = parseFloat(obj.textContent.replace("%", ""));
-        // Compara si el porcentaje es mayor o igual a 5
-        if (porcentaje >= 5) {
-            cantTropasActivas++;
-        }
+
+    tropas.forEach((obj) => {
+        let porcentaje = parseFloat(obj.textContent.replace("%", ""));
+        if (porcentaje >= 5) cantTropasActivas++;
+        if (porcentaje >= 0 && porcentaje < 5) cantTropasInactivas++;
     });
-    // Ahora, añade la nueva fila a la tabla
-    const tbody = document.querySelector("#acciones_ciudad_wrapper > table:nth-child(6) > tbody > tr:nth-child(2) > td:nth-child(1) > div > table:nth-child(1) > tbody");
-    const nuevaFila = document.createElement("tr");
-    // Añade las celdas a la nueva fila
-    const celdaImagen = document.createElement("td");
-    celdaImagen.width = "44";
-    nuevaFila.appendChild(celdaImagen);
-    const celdaMensaje = document.createElement("td");
-    celdaMensaje.colSpan = 2; // Hace que la celda ocupe dos columnas
-    const textoMensaje = document.createElement("span");
-    textoMensaje.textContent = "Tropas que actúan: ";
-    textoMensaje.style.fontSize = "12px";
-    textoMensaje.style.fontWeight = "700";
-    const numeroMensaje = document.createElement("span");
-    numeroMensaje.textContent = `${cantTropasActivas}`;
-    numeroMensaje.style.fontSize = "24px";
-    numeroMensaje.style.fontWeight = "700";
-    numeroMensaje.style.color = "red";
-    celdaMensaje.appendChild(textoMensaje);
-    celdaMensaje.appendChild(numeroMensaje);
-    nuevaFila.appendChild(celdaMensaje);
-    tbody.appendChild(nuevaFila);
+
+    const tableDiv = document.querySelector("#acciones_ciudad_wrapper > table:nth-child(6) > tbody > tr:nth-child(2) > td:nth-child(1) > div");
+    const tableInfoRecursos = document.querySelector("#acciones_ciudad_wrapper > table:nth-child(6) > tbody > tr:nth-child(2) > td:nth-child(1) > div > table.inforecursos");
+
+    const newTable = document.createElement("table");
+    newTable.width = "100%";
+
+    const tbody = document.createElement("tbody");
+    const fila = document.createElement("tr");
+
+    fila.appendChild(crearCelda("Inactivas:", cantTropasInactivas.toString(), "red", "32px"));
+    fila.appendChild(crearCelda("Activas:", cantTropasActivas.toString(), "green", "32px"));
+    tbody.appendChild(fila);
+    newTable.appendChild(tbody);
+    tableDiv.insertBefore(newTable, tableInfoRecursos);
+}
+function crearCelda(titulo, numero, color, fontSize) {
+    const celda = document.createElement("td");
+
+    // Estilos para centrar el contenido de la celda vertical y horizontalmente
+    celda.style.textAlign = "center"; // Centrado horizontal
+    celda.style.verticalAlign = "middle"; // Centrado vertical
+
+    celda.classList.add("celda-centrada");
+var tituloFontSize = "20px"
+    const divTitulo = document.createElement("div");
+    divTitulo.textContent = titulo;
+    divTitulo.style.color = "black";
+    divTitulo.style.fontSize = tituloFontSize;
+    divTitulo.style.fontWeight = "700";
+    divTitulo.style.verticalAlign = "top";
+
+    const divNumero = document.createElement("div");
+    divNumero.textContent = numero;
+    divNumero.style.color = color;
+    divNumero.style.fontSize = fontSize;
+    divNumero.style.fontWeight = "700";
+    if (color == "red") {
+        divNumero.style.fontWeight = "300";
+        // continue;
+    }
+    divNumero.style.verticalAlign = "middle";
+
+    celda.appendChild(divTitulo);
+    celda.appendChild(divNumero);
+
+    return celda;
 }
 
 function moverBotones() {
