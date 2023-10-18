@@ -44,7 +44,6 @@ setTimeout(() => {
     cargaCiudad();
 }, 200);
 
-
 function calculaEstrellas() {
     for (var i = 0; i < edificios.length; i++) {
         estrellaVerde(i);
@@ -154,7 +153,7 @@ function crearCelda(titulo, numero, color, fontSize) {
     celda.style.verticalAlign = "middle"; // Centrado vertical
 
     celda.classList.add("celda-centrada");
-var tituloFontSize = "20px";
+    var tituloFontSize = "20px";
     const divTitulo = document.createElement("div");
     divTitulo.textContent = titulo;
     divTitulo.style.color = "black";
