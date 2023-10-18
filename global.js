@@ -4,31 +4,6 @@ var _REGIONES = 2;
 var _RECONQUISTA = 3;
 var _INFORME = 1;
 var _INFORMECOMPARTIDO = 2;
-/*var politics = {
-	losdioses: 0,
-	magiaarcana: 0,
-	rituales: 0,
-	cultodemoniaco: 0,
-	arquitectura: 0,
-	rutasdecontrabando: 0,
-	profundidadcuevas: 0,
-	esclavitud: 0,
-	patriotismo: 0,
-	serviciomilitar: 0,
-	torturas: 0,
-	aduanas: 0,
-	naturaleza: 0,
-	libertadpolitica: 0,
-	burguesia: 0,
-	gremios: 0,
-	lamujer: 0,
-	nobleza: 0,
-	justicia: 0,
-	medicina: 0,
-	escuelas: 0,
-	musica: 0,
-};*/
-
 var idClan = 0;
 var clansResult = [];
 var clans = [];
@@ -87,7 +62,7 @@ function alwaysDo() {
 	elementoLista.innerHTML = `<li><a href="ultimosataques.php">Ataques recibidos</a></li>`;
 	document.querySelector("#sinfo  ul").children[2].innerHTML = `<a href="ultimosataquestuyos.php">Ataques realizados</a>`;
 	document.querySelector("#sinfo  ul").children[2].before(elementoLista);
-	cargaImperio();
+	cargaImperio2();
 }
 var GLOBAL = {
 	showError: function (msg, container, time) {
@@ -139,18 +114,7 @@ var GLOBAL = {
 		console.error("EXTENSION EXCEPTION\n" + data.responseText);
 	},
 	getPartida: function () {
-		return $(
-			$("#_infopartida")
-				.contents()
-				.filter(function () {
-					return this.nodeType == Node.TEXT_NODE;
-				})[1],
-		)
-			.text()
-			.trim()
-			.replace("(Ronda ", "")
-			.replace(")", "")
-			.split(" ")[0];
+		return $($("#_infopartida").contents().filter(function () { return this.nodeType == Node.TEXT_NODE;})[1],).text().trim().replace("(Ronda ", "").replace(")", "").split(" ")[0];
 	},
 	getClanCantidad: function () {
 		switch (GLOBAL.getPartida()) {
@@ -250,56 +214,9 @@ var GLOBAL = {
 			if (LOCAL.getRecurso().turnos == turnos) updateRecurso = false;
 		}
 		if (updateRecurso) API.setRecurso(LOCAL.getImperio().guidImperio, GLOBAL.getPartida(), GLOBAL.getRonda(), parseInt($("#g_turnos").html().replace(/\./g, "")), parseInt($("#g_mana").html().replace(/\./g, "")), parseInt($("#g_karma").html().replace(/\./g, "")), parseInt($("#g_oro").html().replace(/\./g, "")), parseInt($("#g_alimentos").html().replace(/\./g, "")), parseInt($("#g_agua").html().replace(/\./g, "")), parseInt($("#g_hierro").html().replace(/\./g, "")), parseInt($("#g_piedra").html().replace(/\./g, "")), parseInt($("#g_madera").html().replace(/\./g, "")), parseInt($("#g_mithril").html().replace(/\./g, "")), parseInt($("#g_plata").html().replace(/\./g, "")), parseInt($("#g_gemas").html().replace(/\./g, "")), parseInt($("#g_herramientas").html().replace(/\./g, "")), parseInt($("#g_bloques").html().replace(/\./g, "")), parseInt($("#g_tablas").html().replace(/\./g, "")), parseInt($("#g_reliquias").html().replace(/\./g, "")), parseInt($("#g_joyas").html().replace(/\./g, "")), parseInt($("#g_cristal").html().replace(/\./g, "")), parseInt($("#g_armas").html().replace(/\./g, "")), parseInt($("#g_rubies").html().replace(/\./g, "")));
-	},
-	gobiernoRegion: function () {
-		// console.log("Funcion gobiernoRegion:");
-		var gobernante = [];
-		var N_regiones = 0;
-		// console.log("GLOBAL.getPartida():", GLOBAL.getPartida());
-		switch (GLOBAL.getPartida()) {
-			case "KENARON":
-			case "GARDIS":
-				N_regiones = 30;
-				break;
-			case "ZULA":
-			case "NUMIAN":
-				N_regiones = 16;
-				break;
-			case "FANTASY":
-				N_regiones = 15;
-		}
-		var gobernas = false;
-		// console.log("N_regiones:", N_regiones);
-		function getGobernantesFromLocalStorage() {
-			// Obtener el valor de 'Gobernantes' de localStorage
-			const gobernantesString = localStorage.getItem("Gobernantes");
-			// Parsear el valor a un array de JavaScript
-			var gobernantesArray;
-			try {
-				gobernantesArray = JSON.parse(gobernantesString);
-			} catch (e) {
-				// console.error("Error al parsear los gobernantes del localStorage:", e);
-				// Puedes retornar un valor predeterminado o manejar el error de alguna otra manera
-				return null;
-			}
-			return gobernantesArray;
-		}
-		const gobernantes = getGobernantesFromLocalStorage();
-		// var gobernas = false;
-		function gobiernoRegion(region) {
-			if (!gobernantes || typeof gobernantes[region] === "undefined") {
-				gobernantes[region] = "000";
-				// return false;
-			} else {
-				// console.log('gobernantes[region]:', gobernantes[region]);
-				gobernas = true;
-				// return gobernantes[region] === LOCAL.getImperio().clan;
-			}
-			// console.log('gobernas:', gobernas);
-			return gobernas;
-		}
-		return gobernas;
-	},
+	},gobiernoRegion: function (region) {
+    return LOCAL.getGobernantes()[region] == LOCAL.getImperio().clan;
+  },
 	cargaImperio: function () {
 		var contadorPol = 0;
 		if (LOCAL.getCarga() == null) return;
@@ -362,7 +279,7 @@ var GLOBAL = {
 	},
 };
 
-function cargaImperio() {
+function cargaImperio2() {
 	// var listaClanes = [];
 
 	if (LOCAL.getPoliticas() == null) {
@@ -376,13 +293,9 @@ function cargaImperio() {
 async function ejecutarFuncionesEnOrden() {
     try {
         siglaBuscada = await obtenerClanImperio();
-        // console.log('siglaBuscada:', siglaBuscada);
 		listaClanes = await getSiglaAndLink();
-		// console.log('listaClanes:', listaClanes);
         enlace = await obtenerLinkPorSigla(siglaBuscada)
-        // console.log('enlace:', enlace);
         datos = await obtenerMaras(enlace);
-        // console.log('Maras cargadas');
         await mostrarMensaje();
     } catch (error) {
         console.error("Ocurrió un error al ejecutar las funciones:", error);
@@ -461,7 +374,6 @@ ejecutarFuncionesEnOrden();
 					}
 				}
 			}
-			// console.log("clans de getIdClan:", clans);
 			return clans;
 		} catch (error) {
 			console.error("Ocurrió un error al hacer la solicitud HTTP:", error);
@@ -495,15 +407,6 @@ ejecutarFuncionesEnOrden();
 			console.error("No se cargaron todos los datos necesarios.", error);
 		}
 	}
-/*	async function obtenerClanes() {
-		try {
-			enlace = obtenerLinkPorSigla(siglaBuscada);
-			obtenerMaras(enlace);
-		} catch (error) {
-			console.error("Error obteniendo los clanes:", error);
-		}
-	}*/
-
 	// Llamar a la función
 	function getMaravillas(doc) {
 		var miClan = {
@@ -516,8 +419,6 @@ ejecutarFuncionesEnOrden();
 		miClan.maravilla2 = doc.querySelector("#_ayudam2 h3").innerText;
 		return miClan;
 	}
-
-
 	function getGobiernantes(doc) {
 		let gobernantes = [];
 		let n_regiones = 0;

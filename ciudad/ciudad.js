@@ -25,7 +25,8 @@ setTimeout(() => {
     var recursosActuales = JSON.parse(document.getElementById("recursosActuales").value);
     //cargo datos de ciudad
     recursos = new recursosClass(recursosActuales);
-    var multiplicador = new multiplicadores(GLOBAL.getPartida(), GLOBAL.gobiernoRegion(), LOCAL.getImperio(), getDataCiudad(document), LOCAL.getPoliticas(), LOCAL.getClan());
+    var dataCiudad = getDataCiudad(document);
+    var multiplicador = new multiplicadores(GLOBAL.getPartida(), GLOBAL.gobiernoRegion(dataCiudad.region), LOCAL.getImperio(), getDataCiudad(document), LOCAL.getPoliticas(), LOCAL.getClan());
     listaElementosEdificios.forEach(function callback(obj, index) {
         var nombre = obj.innerText
             .trim()
@@ -119,13 +120,13 @@ function estrellaAzul() {
     }
 }
 function tropasActuantes() {
-    let cantTropasActivas = 0;
-    let cantTropasInactivas = 0;
+    var cantTropasActivas = 0;
+    var cantTropasInactivas = 0;
 
     const tropas = document.querySelectorAll("span.porcentajetropas");
 
     tropas.forEach((obj) => {
-        let porcentaje = parseFloat(obj.textContent.replace("%", ""));
+        var porcentaje = parseFloat(obj.textContent.replace("%", ""));
         if (porcentaje >= 5) cantTropasActivas++;
         if (porcentaje >= 0 && porcentaje < 5) cantTropasInactivas++;
     });
@@ -153,7 +154,7 @@ function crearCelda(titulo, numero, color, fontSize) {
     celda.style.verticalAlign = "middle"; // Centrado vertical
 
     celda.classList.add("celda-centrada");
-var tituloFontSize = "20px"
+var tituloFontSize = "20px";
     const divTitulo = document.createElement("div");
     divTitulo.textContent = titulo;
     divTitulo.style.color = "black";

@@ -30,7 +30,7 @@ class multiplicadores {
 		    this.#multiplicador[recurso] *= terrenoBonos[recurso];
 		  }
 		}
-		this.#bonoGobierno(gobierno);
+		this.#bonoGobierno(gobierno, partida, ciudad);
 		this.#bonoMaravilla(maravillas);
 		this.#bonoPoliticas(politicas);
 		this.#bonoImperio(imperio);
@@ -38,7 +38,7 @@ class multiplicadores {
 	getMultiplicador(){
 		return this.#multiplicador;
 	}
-	#bonoGobierno(gobierno){
+	#bonoGobierno(gobierno, partida, ciudad){
 		if (!gobierno){
 			console.log("no gobierna esta region");
 			return;
@@ -90,7 +90,7 @@ class multiplicadores {
 		if (imperio.pacifico){
 			this.#multiplicador.RUTAS           *= 1.2;
 			this.#multiplicador.FAMA            *= 1.2;
-			this.#multiplicador.ORO             *= 1.2; 
+			this.#multiplicador.ORO             *= 1.2;
 		}
 	}
 }
