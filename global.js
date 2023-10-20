@@ -113,6 +113,9 @@ var GLOBAL = {
 				return 0;
 		}
 	},
+	gobiernoRegion: function (region) {
+    return LOCAL.getGobernantes()[region] == LOCAL.getImperio().clan;
+  },
 	getRonda: function() {
 		return parseInt($($("#_infopartida").contents().filter(function() {
 			return this.nodeType == Node.TEXT_NODE;
@@ -427,9 +430,7 @@ function moveAsedios(e) {
 			if (LOCAL.getRecurso().turnos == turnos) updateRecurso = false;
 		}
 		if (updateRecurso) API.setRecurso(LOCAL.getImperio().guidImperio, GLOBAL.getPartida(), GLOBAL.getRonda(), parseInt($("#g_turnos").html().replace(/\./g, "")), parseInt($("#g_mana").html().replace(/\./g, "")), parseInt($("#g_karma").html().replace(/\./g, "")), parseInt($("#g_oro").html().replace(/\./g, "")), parseInt($("#g_alimentos").html().replace(/\./g, "")), parseInt($("#g_agua").html().replace(/\./g, "")), parseInt($("#g_hierro").html().replace(/\./g, "")), parseInt($("#g_piedra").html().replace(/\./g, "")), parseInt($("#g_madera").html().replace(/\./g, "")), parseInt($("#g_mithril").html().replace(/\./g, "")), parseInt($("#g_plata").html().replace(/\./g, "")), parseInt($("#g_gemas").html().replace(/\./g, "")), parseInt($("#g_herramientas").html().replace(/\./g, "")), parseInt($("#g_bloques").html().replace(/\./g, "")), parseInt($("#g_tablas").html().replace(/\./g, "")), parseInt($("#g_reliquias").html().replace(/\./g, "")), parseInt($("#g_joyas").html().replace(/\./g, "")), parseInt($("#g_cristal").html().replace(/\./g, "")), parseInt($("#g_armas").html().replace(/\./g, "")), parseInt($("#g_rubies").html().replace(/\./g, "")));
-	},gobiernoRegion: function (region) {
-    return LOCAL.getGobernantes()[region] == LOCAL.getImperio().clan;
-  },
+	},
 		showInfo: function(msg, time) {
 			var mensajeOk = document.createElement("div");
 			mensajeOk.className = "mensajeOk";
