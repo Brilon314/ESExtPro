@@ -113,9 +113,9 @@ var GLOBAL = {
 				return 0;
 		}
 	},
-	gobiernoRegion: function (region) {
-    return LOCAL.getGobernantes()[region] == LOCAL.getImperio().clan;
-  },
+	gobiernoRegion: function(region) {
+		return LOCAL.getGobernantes()[region] == LOCAL.getImperio().clan;
+	},
 	getRonda: function() {
 		return parseInt($($("#_infopartida").contents().filter(function() {
 			return this.nodeType == Node.TEXT_NODE;
