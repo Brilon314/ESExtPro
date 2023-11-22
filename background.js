@@ -1,12 +1,16 @@
-chrome.action.onClicked.addListener(
-	function(tab) {
-		if (tab.url && tab.url.indexOf('https://www.empire-strike.com/') === 0)
-			chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
+// chrome.action.onClicked.addListener(
+// 	function(tab) {
+// 		if (tab.url && tab.url.indexOf('https://www.empire-strike.com/') === 0)
+// 			chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
+// });
+
+
+
+
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    var currentTab = tabs[0];
+    chrome.tabs.insertCSS(currentTab.id, {file: "tuimperio/estilosEspeciales.cssK"});
 });
-
-
-
-
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.message == "addAsedio")

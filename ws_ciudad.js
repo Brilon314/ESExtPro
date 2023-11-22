@@ -50,7 +50,7 @@ var multiplicador = {
 //tomo poblacion, quito espacios, punto de mil y parseo a entero
 var pobla = parseInt(document.getElementById("poblacionciudad").innerText.trim().replace(".", ""));
 //edifico con barra espaciadora
-window.addEventListener("keydown", function (event) {
+window.addEventListener("keydown", function(event) {
   if (event.key == " ") {
     document.getElementById("frm_edificios").submit();
   }
@@ -218,29 +218,29 @@ if (LOCAL.getGobernantes() != null)
             multiplicador.FAMA *= 1.5;
             break;
         }
-      case "FANTASY":
-        switch (region) {
-          case 11:
-            multiplicador.FAMA *= 1.5 / 0.9;
-            break;
-          case 12:
-            multiplicador.ORO *= 1.5;
-            multiplicador.MADERA *= 2;
-            break;
-          case 13:
-            multiplicador.KARMA *= 1.2;
-            multiplicador.MANA *= 1.2;
-          case 6:
-            rBase *= 2;
-            break;
-          case 7:
-            multiplicador.MANA *= 2;
-            break;
-          case 15:
-            multiplicador.KARMA *= 2;
-            break;
-        }
-        break;
+        case "FANTASY":
+          switch (region) {
+            case 11:
+              multiplicador.FAMA *= 1.5 / 0.9;
+              break;
+            case 12:
+              multiplicador.ORO *= 1.5;
+              multiplicador.MADERA *= 2;
+              break;
+            case 13:
+              multiplicador.KARMA *= 1.2;
+              multiplicador.MANA *= 1.2;
+            case 6:
+              rBase *= 2;
+              break;
+            case 7:
+              multiplicador.MANA *= 2;
+              break;
+            case 15:
+              multiplicador.KARMA *= 2;
+              break;
+          }
+          break;
     }
   }
 if (LOCAL.getImperio() != null)
@@ -290,14 +290,11 @@ if (document.querySelector("#acciones_ciudad_wrapper > table:nth-child(2) > tbod
         return;
     }
   });
-chrome.storage.sync.get(
-  {
-    construcciones: true,
-  },
-  function (items) {
-    if (items.construcciones) ciudad_process();
-  },
-);
+chrome.storage.sync.get({
+  construcciones: true,
+}, function(items) {
+  if (items.construcciones) ciudad_process();
+}, );
 if (LOCAL.getCiudad() != null) {
   var ciudades = LOCAL.getCiudad();
   var idCiudad = parseInt(document.querySelector(".tituloimperio").innerText.split("#")[1]);
@@ -378,7 +375,7 @@ function ciudad_process() {
       costosTotales.push(costo);
     }
     document.querySelectorAll(".elim").forEach(function callback(obj, index) {
-      obj.addEventListener("click", function () {
+      obj.addEventListener("click", function() {
         ciudad_recalcular(costosTotales, recursosActuales, recursosUsados, edificiosConstruidos);
         mostrarCasitas(edificiosSeleccionados());
       });
@@ -390,17 +387,17 @@ function ciudad_process() {
       var nroEdificio = estrella % 10;
       if (nroEdificio > edificiosConstruidos[edificio]) edificiosConstruidos[edificio] = nroEdificio;
     });
-    autoBuild.onkeyup = function () {
+    autoBuild.onkeyup = function() {
       flagRentable = false;
       ciudad_recalcular(costosTotales, recursosActuales, recursosUsados, edificiosConstruidos);
       flagRentable = true;
       ciudad_recalcular(costosTotales, recursosActuales, recursosUsados, edificiosConstruidos);
     };
     document.querySelectorAll(".estrella").forEach(function callback(obj, index) {
-      obj.addEventListener("mouseenter", function () {
+      obj.addEventListener("mouseenter", function() {
         ciudad_recalcular(costosTotales, recursosActuales, recursosUsados, edificiosConstruidos);
       });
-      obj.addEventListener("click", function () {
+      obj.addEventListener("click", function() {
         masRentable = 99990;
         masRentableI = 99990;
         flagRentable = false;

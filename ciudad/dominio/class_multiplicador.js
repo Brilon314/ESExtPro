@@ -49,6 +49,8 @@ class multiplicadores {
     }
     for (const recurso in gobiernoBonos) {
       this.#multiplicador[recurso] *= gobiernoBonos[recurso];
+      console.log("Gobiernan esta region");
+      console.log("Hay bono de produccion, de: ", recurso);
     }
   }
   #bonoMaravilla(maravillas) {

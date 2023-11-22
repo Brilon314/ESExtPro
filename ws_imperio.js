@@ -57,6 +57,7 @@ if (table) {
 } else {
   console.log("No se encontró la tabla 2.");
 }
+
 // FIN OBTIENE DATOS PARA BOTON TODAS LAS CIUDADES
 var raza = $($("#datos tr td")[2]).html();
 var clan = "";
@@ -67,6 +68,7 @@ var produccion = {};
 //#datos > tbody > tr:nth-child(3) > td:nth-child(3)
 var ib = $("#datos > tbody > tr:nth-child(3) > td:nth-child(3)")[0].outerText.replace('Índice Bélico', '').split('%')[0].replace(',', '.').trim();
 //Formula 0.1*(100 - IB actual)
+console.log('ib:', ib);
 var ibReducidoAlPaso = 0.1 * (100 - ib);
 var ibAlPaso = (ib - ibReducidoAlPaso).toFixed(1);
 if (ibAlPaso < 0) ibAlPaso = 0;

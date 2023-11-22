@@ -67,7 +67,7 @@ function setEdificador() {
 
 /*function setEdificador(){
 	let interfaz = document.createElement("table")
-	interfaz.innerHTML = 
+	interfaz.innerHTML =
 	    `<tbody>
 	        <tr>
 	            <td class="cabecera">
@@ -137,3 +137,4 @@ function getEdificiosSeleccionados() {
 function comparar(a, b) {
 	return a[2] - b[2];
 }
+

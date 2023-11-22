@@ -3,6 +3,10 @@ var multiplicadorBase = 1;
 document.querySelector("tfoot tr").children[0].innerHTML = "<span id='multiplicadores' style='color: #001199; font-weight: bold'></span>";
 var multiplicadorGobernante = 2;
 if (GLOBAL.getPartida() == "ZULA" || GLOBAL.getPartida() == "NUMIAN") multiplicadorGobernante = 3;
+const infoImperio = JSON.parse(localStorage.Imperio);
+var esPacifico = infoImperio.pacifico;
+console.log('esPacifico:', esPacifico);
+LOCAL.setPacifico(esPacifico);
 if (LOCAL.getPacifico()) {
   multiplicadorBase *= 1.2;
   document.getElementById("multiplicadores").innerText = "Bonos: Pacifico=x" + 1.2;
